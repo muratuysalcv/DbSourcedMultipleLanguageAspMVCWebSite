@@ -1,0 +1,172 @@
+﻿@using FisherManager.Web.Extensions
+@using System.Threading
+@{
+    var culture = Thread.CurrentThread.CurrentCulture.Name;
+    var SubscriptionId = ViewBag.SubscriptionId;
+    ViewBag.Title = "SubscriptionDetail";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+
+<div class="main-content">
+    <div class="layout-px-spacing">
+        <div class="account-settings-container layout-top-spacing">
+            <div class="account-content">
+                <div class="scrollspy-example" data-spy="scroll" data-target="#account-settings-scroll" data-offset="-100">
+                    <div class="row">
+                        <div class="col-xl-12 col-lg-12 col-md-12 layout-spacing">
+                            <form id="general-info" class="section general-info">
+                                <div class="info">
+                                    <div class="row">
+                                        <div class="col-lg-11 mx-auto">
+                                            <div class="row">
+                                                <div class="col-xl-12 col-lg-12 col-md-8 mt-md-0 mt-4">
+                                                    <div class="form">
+                                                        <div class="row">
+                                                            <div class="col-sm-12">
+                                                                <div style="margin-top:70px;" class="form-group">
+                                                                    <center><h4 id="packagePrice"></h4></center>
+                                                                    <center><h1 id="packageName"></h1></center>
+                                                                    <br />
+                                                                    <center><h4 id="packageDescription"></h4></center>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="layout-px-spacing">
+                <div class="faq">
+                    <div class="faq-layouting layout-spacing">
+                        <div class="fq-tab-section layout-top-spacing">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <h2><span>@Html.T("SUBSCRIPTION_DETAIL_MODULES")</span></h2>
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div class="accordion" id="simple_faq">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Button trigger modal -->
+            
+
+            <!-- Modal -->
+            <div class="modal fade" id="tabsModal" tabindex="-1" role="dialog" aria-labelledby="tabsModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="tabsModalLabel">Modal title</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="nav nav-tabs mb-3" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Home</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+                                </li>
+                            </ul>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                                    <p class="modal-text">Vivamus vitae hendrerit neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Morbi consequat auctor turpis, vitae dictum augue efficitur vitae. Vestibulum a risus ipsum. Quisque nec lacus dolor. Quisque ornare tempor orci id rutrum.</p>
+                                </div>
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                                    <p class="modal-text">Fusce ac fringilla ex. Sed ligula ipsum, fringilla ut orci nec, suscipit commodo felis. Sed imperdiet eros dignissim, vehicula erat vel, rutrum lorem. In porttitor id ante nec laoreet. Etiam quis sapien ac nunc ullamcorper elementum. Fusce ullamcorper ante convallis nisl eleifend, sit amet dapibus urna eleifend.</p>
+                                </div>
+                                <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+                                    <p class="modal-text">Pellentesque semper tortor id ligula ultrices suscipit. Donec viverra vulputate lectus non consectetur. Donec ac interdum lacus. Donec euismod nisi at justo molestie elementum. Vivamus vitae hendrerit neque. Orci varius natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i> Discard</button>
+                            <button type="button" class="btn btn-primary">Save</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="account-settings-footer">
+                <div class="as-footer-container">
+                    <button onclick="GoBack()" class="btn btn-danger">@Html.T("BACK_TO_SUBSCRIPTIONS")</button>
+                    <button data-toggle="modal" data-target="#tabsModal" class="btn btn-dark">@Html.T("BUY_THIS_PACKAGE")</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+
+    <script>
+
+        $(document).ready(function () {
+            var subsId = @SubscriptionId;
+            GetSubscriptionDetail(subsId);
+        });
+
+        function GetSubscriptionDetail(subsId) {
+            var html = '';
+            $.ajax({
+                url: "@Url.Action("GetSubscriptionDetail", "Management")" + "?subscriptionId=" + subsId,
+                type: "POST",
+
+                contentType: "application/json; charset=utf-8",
+                success: function(response) {
+                    console.log(response);
+                    for (var i = 0; i < response.length; i++) {
+                        $('#packageName').html(response[0].SUBSCRIPTION_NAME);
+                        $('#packageDescription').html(response[0].SUBSCRIPTION_DESCRIPTION);
+                        $('#packagePrice').html(response[0].SUBSCRIPTION_PRICE + '<br>' + response[0].SUBSCRIPTION_CURRENCY_TYPE);
+
+                        html += '<div class="card">';
+                        html += '<div class="card-header" id="fqheadingOne">';
+                        html += '<div class="mb-0" data-toggle="collapse" role="navigation" data-target="#fqcollapseOne_' + response[i].MODULE_ID + '" aria-expanded="false" aria-controls="fqcollapseOne_' + response[i].MODULE_ID +'">';
+                        html += '<span class="faq-q-title">'+response[i].MODULE_NAME+'</span>';
+                        html += '<div class="icons"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></div>';
+                        html += '</div></div>';
+                        html += '<div id="fqcollapseOne_' + response[i].MODULE_ID + '" class="collapse" aria-labelledby="fqheadingOne_' + response[i].MODULE_ID +'" data-parent="#simple_faq">';
+                        html += '<div class="card-body">';
+                        html += '<p>' + response[i].MODULE_DESCRIPTION +'</p>';
+                        html += '</div></div></div>';
+                        $('#simple_faq').html(html);
+                    }
+
+                },
+                error: function (result) {
+
+                }
+
+
+
+
+               
+            })
+        }
+        function GoBack() {
+            window.location.href = "@Url.Action("Subscription","Management")";
+        }
+    </script>
+
+}

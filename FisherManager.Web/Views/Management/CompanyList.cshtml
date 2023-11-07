@@ -1,0 +1,254 @@
+﻿@using FisherManager.Web.Extensions
+@using System.Threading
+@{
+    var culture = Thread.CurrentThread.CurrentCulture.Name;
+    ViewBag.Title = "CustomerList";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<div class="layout-px-spacing">
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalCenterTitle">@Html.T("CREATE_COMPANY")</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                    </button>
+                </div>
+                <form id="createForm" method="post">
+                    <div class="modal-body">
+                        <div id="basic" class="col-lg-12 col-sm-12 col-12 layout-spacing">
+
+                            <label>@Html.T("COMPANY_NAME")</label>
+                            <input id="CompanyName" type="text" name="txt" placeholder="@Html.T("COMPANY_NAME")" class="form-control" required>
+
+                            <br />
+                            <label>@Html.T("COMPANY_DESCRIPTION")</label>
+                            <input id="CompanyDescription" type="text" name="txt" placeholder="@Html.T("COMPANY_DESCRIPTION")" class="form-control" required>
+                            <br />
+                            <label>@Html.T("COMPANY_E_MAIL")</label>
+                            <input id="CompanyEMail" type="text" name="txt" placeholder="@Html.T("COMPANY_E_MAIL")" class="form-control" required>
+                            <br />
+                            <label>@Html.T("COMPANY_COUNTRY")</label>
+                            <select id="CompanyCountry" class="form-control tagging">
+                                <option>@Html.T("TURKEY")</option>
+                                <option>@Html.T("ENGLAND")</option>
+                            </select>
+                            <br />
+                            <label>@Html.T("COMPANY_CITY")</label>
+                            <input id="CompanyCity" type="text" name="txt" placeholder="@Html.T("COMPANY_CITY")" class="form-control" required>
+                            <br />
+                            <label>@Html.T("COMPANY_DISTRICT")</label>
+                            <input id="CompanyDistrict" type="text" name="txt" placeholder="@Html.T("COMPANY_DISTRICT")" class="form-control" required>
+                            <br />
+                            <label>@Html.T("COMPANY_ADDRESS")</label>
+                            <textarea id="CompanyAddress" class="form-control" rows="2"></textarea>
+                            <br />
+                            <label>@Html.T("COMPANY_TAX_NUMBER")</label>
+                            <input id="CompanyTaxNumber" type="text" name="txt" placeholder="@Html.T("COMPANY_TAX_NUMBER")" class="form-control" required>
+                            <br />
+                            <label>@Html.T("COMPANY_TAX_OFFICE")</label>
+                            <input id="CompanyTaxOffice" type="text" name="txt" placeholder="@Html.T("COMPANY_TAX_OFFICE")" class="form-control" required>
+                            <br />
+                            <label>@Html.T("COMPANY_PRODUCTION_CAPACITY")</label>
+                            <input id="CompanyProductionCapacity" type="text" name="txt" placeholder="@Html.T("COMPANY_PRODUCTION_CAPACITY")" class="form-control" required>
+
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i>@Html.T("CREATE_CANCEL")</button>
+                        <button   type="submit" class="btn btn-primary">@Html.T("CREATE_SAVE")</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row layout-top-spacing">
+
+        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+            <div class="widget-content widget-content-area br-6">
+                <div class="text-right">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModalCenter">
+                        @Html.T("CREATE_COMPANY")
+                    </button>
+                </div>
+                <div class="table-responsive mb-4 mt-4">
+
+                    <table id="companyList" class="table table-hover non-hover" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>@Html.T("DT_ID")</th>
+                                <th>@Html.T("DT_COMPANY_NAME")</th>
+                                <th>@Html.T("DT_COMPANY_DESCRIPTION")</th>
+                                <th>@Html.T("DT_DATE_CREATE")</th>
+                                <th>@Html.T("DT_ACTION")</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            loadTable();
+            $("#CompanyEMail").inputmask(
+                {
+                     mask:"*{1,20}[.*{1,20}][.*{1,20}][.*{1,20}]@@*{1,20}[.*{2,6}][.*{1,2}]",
+                    greedy: !1, onBeforePaste: function (m, a) { return (m = m.toLowerCase()).replace("mailto:", "") },
+                    definitions: {
+                        "*":
+                        {
+                            validator: "[0-9A-Za-z!#$%&'*+/=?^_`{|}~-]",
+                            cardinality: 1,
+                            casing: "lower"
+                        }
+                    }
+                }
+            )
+            $('#createForm').on('submit', function (e) {
+                CreateCompany();
+                return false;
+            });
+        });
+        function loadTable() {
+            $('#companyList').DataTable({
+                ajax: {
+                    url: "@Url.Action("GetCompanyList", "Management")",
+                    type: "POST",
+                    dataType: "json"
+                },
+                //dom: '<"row"<"col-md-12"<"row"<"col-md-6"B><"col-md-6"f> > ><"col-md-12"rt> <"col-md-12"<"row"<"col-md-5"i><"col-md-7"p>>> >',
+                buttons: {
+                    buttons: [
+                        { extend: 'copy', className: 'btn' },
+                        { extend: 'csv', className: 'btn' },
+                        { extend: 'excel', className: 'btn' },
+                        { extend: 'print', className: 'btn' }
+                    ]
+                },
+                columns: [
+                    {
+                        data: "COMPANY_ID", name: "COMPANY_ID",
+
+                    },
+                    {
+                        data: "NAME", name: "NAME",
+                        render: function (data, type, row) {
+                            return "<b>" + data + "</b>";
+                        }
+                    },
+                    { data: "DESCRIPTION", name: "DESCRIPTION" },
+                    { data: "DATE_CREATE_STR", name: "DATE_CREATE_STR" },
+                    {
+                        data: "COMPANY_ID",
+                        render: function (data) {
+                            var html = "";
+                            html += '<div class="btn-group">';
+                            html += '<button type="button" class="btn btn-dark btn-sm dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent"><svg xmlns = "http://www.w3.org/2000/svg" width = "24" height = "24" viewBox = "0 0 24 24" fill = "none" stroke = "currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9"></polyline></svg></button >';
+                            html += '<div class="dropdown-menu" aria-labelledby="dropdownMenuReference2">';
+                            html += '<a class="dropdown-item" onclick="Detail('+data+')">DETAY</a>'; //TODO: Dil desteği eklenecek.
+                            html += '<a class="dropdown-item" href="#">MESAJ GONDER</a>';
+
+                            html += '</div>';
+                            html += '</div>';
+
+                            return html;
+                        },
+                        orderable: false
+                    }
+
+
+
+
+                ],
+                serverSide: "true",
+                order: [0, "asc"],
+                processing: "true",
+                paging:"true",
+                "oLanguage": {
+                    "oPaginate": {
+                        "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>',
+                        "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>'
+                    },
+                    "sInfo": "_PAGES_ sayfadan _PAGE_ sayfa gösteriliyor.",
+                    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                    "sSearchPlaceholder": "Ara...",
+                    "sLengthMenu": "Sonuçlar :  _MENU_",
+                    "sProcessing": "Bekleyiniz...",
+                    "sZeroRecords": "Kayıt bulunamadı.",
+                    "sInfoEmpty": "Kayıt bulunamadı.",
+                    "sInfoFiltered": "_MAX_ kayıt içerisinden filtrelendi.",
+                    "sPaginate": {
+                        "sFirst": "İlk",
+                        "sLast": "Son",
+                        "sNext": "Sonraki",
+                        "sPrevious": "Önceki"
+                    },
+                    "aria": {
+                        "sSortAscending": ": Küçükten büyüğe sıralanıyor.",
+                        "sSortDescending": ": Büyükten küçüğe sıralanıyor."
+                    }
+                },
+                "stripeClasses": [],
+                "lengthMenu": [7, 10, 20, 50],
+                "pageLength": 7
+            });
+        };
+
+        function Detail(id) {
+            
+            window.location.href = "@Url.Action("CompanyDetail", "Management")" + "?companyId=" + id;
+        }
+        function CreateCompany() {
+
+            //$('form').serialize();
+
+            data = {
+                Name: $("#CompanyName").val(),
+                Description: $("#CompanyDescription").val(),
+                Country: $("#CompanyCountry").val(),
+                City: $("#CompanyCity").val(),
+                District: $("#CompanyDistrict").val(),
+                Tax_Number: $("#CompanyTaxNumber").val(),
+                Address: $("#CompanyAddress").val(),
+                Tax_Office: $("#CompanyTaxOffice").val(),
+                Production_Capacity: $("#CompanyProductionCapacity").val(),
+                E_Mail: $("#CompanyEMail").val()
+            }
+            $.ajax({
+                url: "@Url.Action("CreateCompany", "Management")",
+                type: "POST",
+                data: JSON.stringify(data),
+                dataType: "JSON",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    ClearValues();
+                    $('#exampleModalCenter').modal('toggle');
+                    $('#companyList').DataTable().ajax.reload();
+                   
+                },
+                error: function (result) {
+
+                }
+            });
+        }
+        function ClearValues() {
+            $(':input').val('');
+           
+        }
+    </script>
+}

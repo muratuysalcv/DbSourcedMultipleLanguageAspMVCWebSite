@@ -1,0 +1,278 @@
+﻿@using FisherManager.Web.Extensions
+@using System.Threading
+@{
+    Layout = null;
+    var culture = Thread.CurrentThread.CurrentCulture.Name;
+}
+@{
+    var CompanyId = ViewBag.CompanyId;
+    ViewBag.Title = "CompanyDetail";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<div class="layout-px-spacing">
+
+    <div class="row layout-spacing">
+
+        <!-- Content -->
+        <div class="col-xl-5 col-lg-5 col-md-6 col-sm-12 layout-top-spacing">
+
+            <div class="user-profile layout-spacing">
+                <div class="widget-content widget-content-area">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="">@Html.T("COMPANY_DETAIL_PROFILE_INFO_TITLE")</h3>
+                        <a style="margin-top:40px;">
+
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+
+                        </a>
+                    </div>
+                    <div class="text-center user-info">
+                        <img id="companyProfilePicture" src="assets/img/90x90.jpg" alt="avatar">
+                        <p id="companyName" class=""></p>
+                    </div>
+                    <div class="user-info-list">
+
+                        <div class="">
+                            <ul class="contacts-block list-unstyled">
+                                <li id="companyDescription" class="contacts-block__item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-coffee"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                                </li>
+                                <li id="companyDateCreate" class="contacts-block__item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                </li>
+                                <li id="companyFullAddress" class="contacts-block__item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="education layout-spacing ">
+                <div class="widget-content widget-content-area">
+
+                    <h3 class="">@Html.T("COMPANY_DETAIL_CONTACT")</h3>
+
+                    <div class="bio-skill-box">
+                        <div class="row">
+                            <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+                                <div class="widget-content widget-content-area br-6">
+                                    <div class="table-responsive mb-4 mt-4">
+                                        <table id="companyEMailList" class="table table-hover non-hover" style="width:100%">
+                                            <thead>
+                                                <tr>
+                                                    <th>Info</th>
+                                                    <th>@Html.T("COMPANY_E_MAIL")</th>
+
+                                                    @*<th class="">@Html.T("DT_ACTION")</th>*@
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl7 col-lg-7 col-md-6 col-sm-12 layout-top-spacing">
+
+            <div class="bio layout-spacing ">
+                <div class="widget-content widget-content-area">
+                    <h3 class="">@Html.T("COMPANY_DETAIL_INFORMATION")</h3>
+
+                    <div class="bio-skill-box">
+                            <div class="col-6 col-xl-6 col-lg-6 mb-xl-5 mb-5 ">
+
+                                <div class="d-flex b-skills">
+                                    <div>
+                                    </div>
+                                    <div class="">
+                                        <h5>@Html.T("COMPANY_DETAIL_FINANCIAL")</h5>
+                                        <p id="companyTaxNumberAndTaxOffice"></p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div id="isRootControl" hidden class="col-6 col-xl-6 col-lg-6 mb-xl-5 mb-5 ">
+
+                                <div class="d-flex b-skills">
+                                    <div>
+                                    </div>
+                                    <div class="">
+                                        <h5>@Html.T("COMPANY_DETAIL_PRODUCTION_CAPACITY")</h5>
+                                        <p id="companyProductionCapacity"></p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="bio layout-spacing ">
+                <div class="widget-content widget-content-area">
+
+
+                </div>
+            </div>
+
+
+
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+        feather.replace();
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            var companyId = @CompanyId;
+            GetCompanyDetailForProfile(companyId);
+            loadMailTable();
+        });
+
+        function loadMailTable() {
+            var companyId = @CompanyId;
+            var data = {
+                companyId: companyId
+            }
+            $('#companyEMailList').DataTable({
+                ajax: {
+                    url: "@Url.Action("GetCompanyEMailx", "Management")" + "?companyId=" + companyId,
+                    type: "POST",
+
+                    dataType: "JSON",
+                },
+
+                columns: [
+                    {
+                        data: "DESCRIPTION", name: "DESCRIPTION",
+                        render: function (data) {
+                            var html = "";
+                            html += '<center><i title="'+data+'" class="far fa-eye"></i><span class="icon-name"></span></center>';
+                            return html;
+                        },
+                        orderable: false
+                    },
+                    {
+                        data: "PARAMETER_VALUE", name: "PARAMETER_VALUE"
+
+                    },
+                    //{
+                    //    data: "COMPANY_PARAMETER_ID", name: "COMPANY_PARAMETER_ID",
+                    //    render: function (data) {
+                    //        var html = "";
+                    //        return html;
+                    //    }
+                    //},
+
+                ],
+                serverSide: "true",
+                order: [0, "asc"],
+                processing: "true",
+                "oLanguage": {
+                    "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                    "sInfo": "_PAGES_ sayfadan _PAGE_ sayfa gösteriliyor.",
+                    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                    "sSearchPlaceholder": "Ara...",
+                    "sLengthMenu": "Sonuçlar :  _MENU_",
+                    "sProcessing": "Bekleyiniz...",
+                    "sZeroRecords": "Kayıt bulunamadı.",
+                    "sInfoEmpty": "Kayıt bulunamadı.",
+                    "sInfoFiltered": "_MAX_ kayıt içerisinden filtrelendi.",
+                    "sPaginate": {
+                        "sFirst": "İlk",
+                        "sLast": "Son",
+                        "sNext": "Sonraki",
+                        "sPrevious": "Önceki"
+                    },
+                    "aria": {
+                        "sSortAscending": ": Küçükten büyüğe sıralanıyor.",
+                        "sSortDescending": ": Büyükten küçüğe sıralanıyor."
+                    }
+                },
+                "stripeClasses": [],
+                "lengthMenu": [5, 20, 50],
+                "pageLength": 5
+            });
+        };
+        function GetCompanyDetailForProfile(companyId) {
+            var data = {
+                companyId: companyId
+            }
+            $.ajax({
+                 url: "@Url.Action("GetCompanyDetail", "Management")",
+                 type: "POST",
+                 data: JSON.stringify(data),
+                 dataType: "JSON",
+                 contentType: "application/json; charset=utf-8",
+                 success: function (response) {
+                     console.log(response);
+                     if (response.NAME == "" || response.NAME == null) {
+                         $("#companyName").attr("hidden", true);
+                     }
+                     else {
+                         $("#companyName").append(response.NAME);
+                     }
+                     if (response.DESCRIPTION == "" || response.DESCRIPTION == null) {
+                         $("#companyDescription").attr("hidden", true);
+                     }
+                     else {
+                         $("#companyDescription").append(response.DESCRIPTION);
+
+                     }
+
+                     if (response.ADDRESS == "" || response.ADDRESS == null) {
+                         $("#companyFullAddress").attr("hidden", true);
+                     }
+                     else {
+                         $("#companyFullAddress").append(response.ADDRESS + ", " + response.DISTRICT + ", " + response.CITY + ", " + response.COUNTRY);
+
+                     }
+                     if (response.TAX_NUMBER != "" && response.TAX_NUMBER != null && response.TAX_OFFICE != null && response.TAX_OFFICE != "") {
+                         $("#companyTaxNumberAndTaxOffice").append(response.TAX_NUMBER + ", " + response.TAX_OFFICE);
+
+                     }
+                     else {
+                         $("#companyTaxNumberAndTaxOffice").append("-");
+
+                     }
+                     if (response.IS_ROOT != 1) {
+                         $("#isRootControl").removeAttr('hidden');
+                         $("#companyProductionCapacity").append(response.PRODUCTION_CAPACITY)
+                     }
+
+
+                     $("#companyProfilePicture").attr("hidden", true);
+                     $("#companyDateCreate").append(response.DATE_CREATE_STR);
+
+                 },
+                 error: function (result) {
+
+                 }
+
+            });
+        }
+
+
+    </script>
+
+}

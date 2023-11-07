@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2b8aa61504ca44eea9a58dae05021127" Name="Diagram1" ZoomLevel="114">
+        <EntityTypeShape EntityType="fishermanager_webModel.COMPANY" Width="1.5" PointX="0.75" PointY="9.25" />
+        <EntityTypeShape EntityType="fishermanager_webModel.COMPANY_ACCOUNTING" Width="1.5" PointX="3" PointY="23.625" />
+        <EntityTypeShape EntityType="fishermanager_webModel.COMPANY_PARAMETER" Width="1.5" PointX="3" PointY="10.5" />
+        <EntityTypeShape EntityType="fishermanager_webModel.COMPANY_PAYMENT" Width="1.5" PointX="5.25" PointY="23.125" />
+        <EntityTypeShape EntityType="fishermanager_webModel.COMPANY_PAYMENT_TRANSACTION" Width="1.5" PointX="7.5" PointY="23.125" />
+        <EntityTypeShape EntityType="fishermanager_webModel.COMPANY_SUBSCRIPTION" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="fishermanager_webModel.CURRENCY" Width="1.5" PointX="1.5" PointY="18.75" />
+        <EntityTypeShape EntityType="fishermanager_webModel.LANGUAGE" Width="1.5" PointX="8.75" PointY="4.875" />
+        <EntityTypeShape EntityType="fishermanager_webModel.LANGUAGE_RES" Width="1.5" PointX="11" PointY="7.375" />
+        <EntityTypeShape EntityType="fishermanager_webModel.MENU" Width="1.5" PointX="11" PointY="2.5" />
+        <EntityTypeShape EntityType="fishermanager_webModel.MESSAGE" Width="1.5" PointX="5.75" PointY="2.125" />
+        <EntityTypeShape EntityType="fishermanager_webModel.MESSAGE_SETTING" Width="1.5" PointX="8.75" PointY="14.125" />
+        <EntityTypeShape EntityType="fishermanager_webModel.MODULE" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="fishermanager_webModel.PACKAGE" Width="1.5" PointX="8.75" PointY="10.625" />
+        <EntityTypeShape EntityType="fishermanager_webModel.PACKAGE_CALCULATION" Width="1.5" PointX="11" PointY="10.25" />
+        <EntityTypeShape EntityType="fishermanager_webModel.PARAMETER_TYPE" Width="1.5" PointX="0.75" PointY="15.625" />
+        <EntityTypeShape EntityType="fishermanager_webModel.ROLE" Width="1.5" PointX="3.75" PointY="14.25" />
+        <EntityTypeShape EntityType="fishermanager_webModel.SUBSCRIPTION" Width="1.5" PointX="0.75" PointY="4.875" />
+        <EntityTypeShape EntityType="fishermanager_webModel.SUBSCRIPTION_MODULE" Width="1.5" PointX="3" PointY="2.25" />
+        <EntityTypeShape EntityType="fishermanager_webModel.sysdiagrams" Width="1.5" PointX="7.75" PointY="2.125" />
+        <EntityTypeShape EntityType="fishermanager_webModel.USER_ACCOUNT" Width="1.5" PointX="6" PointY="9" />
+        <AssociationConnector Association="fishermanager_webModel.FK_COMPANY_ACCOUNTING_COMPANY" />
+        <AssociationConnector Association="fishermanager_webModel.FK_COMPANY_PARAMETER_COMPANY" />
+        <AssociationConnector Association="fishermanager_webModel.FK_COMPANY_SUBSCRIPTION_COMPANY" />
+        <AssociationConnector Association="fishermanager_webModel.FK_USER_ACCOUNT_COMPANY" />
+        <AssociationConnector Association="fishermanager_webModel.FK_COMPANY_PAYMENT_COMPANY_ACCOUNTING" />
+        <AssociationConnector Association="fishermanager_webModel.FK_COMPANY_PARAMETER_PARAMETER_TYPE" />
+        <AssociationConnector Association="fishermanager_webModel.FK_COMPANY_PAYMENT_TRANSACTION_COMPANY_PAYMENT" />
+        <AssociationConnector Association="fishermanager_webModel.FK_COMPANY_SUBSCRIPTION_SUBSCRIPTION" />
+        <AssociationConnector Association="fishermanager_webModel.FK_MODULE_CURRENCY" />
+        <AssociationConnector Association="fishermanager_webModel.FK_LANGUAGE_RES_LANGUAGE" />
+        <AssociationConnector Association="fishermanager_webModel.FK_MENU_LANGUAGE" />
+        <AssociationConnector Association="fishermanager_webModel.FK_MENU_MENU1" />
+        <AssociationConnector Association="fishermanager_webModel.FK_SUBSCRIPTION_MODULE_MODULE" />
+        <AssociationConnector Association="fishermanager_webModel.FK_PACKAGE_CALCULATION_PACKAGE1" />
+        <AssociationConnector Association="fishermanager_webModel.FK_USER_ACCOUNT_ROLE" />
+        <AssociationConnector Association="fishermanager_webModel.FK_SUBSCRIPTION_MODULE_SUBSCRIPTION" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

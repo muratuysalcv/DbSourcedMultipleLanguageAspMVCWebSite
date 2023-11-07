@@ -1,0 +1,105 @@
+﻿@using FisherManager.Web.Extensions
+@using System.Threading
+@{
+    var culture = Thread.CurrentThread.CurrentCulture.Name;
+    var CompanyId = ViewBag.CompanyId;
+    ViewBag.Title = "CompanyInformations";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+<div class="layout-px-spacing">
+    <div class="row layout-top-spacing">
+
+        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+            <div class="widget-content widget-content-area br-6">
+
+                <!--<div class="text-right">-->
+                <!-- Button trigger modal -->
+                <!--<button type="button" class="btn btn-primary mb-2 mr-2" data-toggle="modal" data-target="#exampleModalCenter">
+                        @Html.T("CREATE_COMPANY_INFORMATION")
+                    </button>
+                </div>-->
+                <h2>@Html.T("COMPANY_INFORMATION")</h2>
+                <div class="table-responsive mb-4 mt-4">
+
+                    <table id="companyEMailList" class="table table-hover non-hover" style="width:100%">
+                        <thead>
+                            <tr>
+
+                                <th>@Html.T("DT_COMPANY_PARAMETER_TYPE")</th>
+                                <th>@Html.T("DT_VALUE")</th>
+                                <th>@Html.T("DT_COMPANY_PARAMETER_DESCRIPTION")</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            loadTable();
+        });
+        function loadTable() {
+            var companyId = @CompanyId;
+            $('#companyEMailList').DataTable({
+                ajax: {
+                    url: "@Url.Action("GetCompanyParameters", "Management")" + "?companyId=" + companyId,
+                    type: "POST",
+
+                    dataType: "JSON",
+                },
+
+                columns: [
+                    {
+                        data: "PARAMETER_TYPE_CODE", name: "PARAMETER_TYPE_CODE",
+                    },
+                    {
+                        data: "PARAMETER_VALUE", name: "PARAMETER_VALUE"
+
+                    },
+                    {
+                        data: "DESCRIPTION", name: "DESCRIPTION",
+
+                    }
+
+                ],
+                serverSide: "true",
+                order: [0, "asc"],
+                processing: "true",
+                "oLanguage": {
+                    "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                    "sInfo": "_PAGES_ sayfadan _PAGE_ sayfa gösteriliyor.",
+                    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                    "sSearchPlaceholder": "Ara...",
+                    "sLengthMenu": "Sonuçlar :  _MENU_",
+                    "sProcessing": "Bekleyiniz...",
+                    "sZeroRecords": "Kayıt bulunamadı.",
+                    "sInfoEmpty": "Kayıt bulunamadı.",
+                    "sInfoFiltered": "_MAX_ kayıt içerisinden filtrelendi.",
+                    "sPaginate": {
+                        "sFirst": "İlk",
+                        "sLast": "Son",
+                        "sNext": "Sonraki",
+                        "sPrevious": "Önceki"
+                    },
+                    "aria": {
+                        "sSortAscending": ": Küçükten büyüğe sıralanıyor.",
+                        "sSortDescending": ": Büyükten küçüğe sıralanıyor."
+                    }
+                },
+                "stripeClasses": [],
+                "lengthMenu": [5, 20, 50],
+                "pageLength": 5
+            });
+        };
+    </script>
+
+}

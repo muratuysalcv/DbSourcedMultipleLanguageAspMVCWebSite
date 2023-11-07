@@ -1,0 +1,19 @@
+﻿@model List<MENU>
+@{
+    Layout = null;
+    string currentLanguage = System.Threading.Thread.CurrentThread.CurrentCulture.Name;
+}
+<ul class="menu-container">
+    @foreach (var menu in Model)
+    {
+        @MenuHtml(menu, currentLanguage)
+    }
+</ul>
+@helper MenuHtml(MENU menu, string currentLanguage)
+{
+    string url = Url.Content("~/" + currentLanguage + "/" + menu.SEO_URL);
+    <li class="menu-item">
+        <a class="menu-link" href="@url"><div>@menu.NAME</div></a>
+    </li>
+}
+

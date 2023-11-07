@@ -1,0 +1,136 @@
+﻿@using FisherManager.Web.Extensions
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Content
+        ============================================= -->
+<section id="content">
+    <div class="content-wrap pb-0">
+        <div class="container py-5">
+
+            <div class="row justify-content-between">
+                <div class="col-md-5">
+                    <h2 class="font-weight-normal display-4"> <span>@Html.T("ABOUT_US_TITLE")</span></h2>
+                    <p class="text-black-50">@Html.Raw(Html.T("ABOUT_US_CONTENT"))</p>
+                    @*<p class="text-black-50">FisherManager® olarak, balık çiftliklerinin yazılım ihtiyaçlarına yönelik çalışmalar yapıyoruz. Bu alanda 10 yıllık yazılım deneyimi, 2 yıllık balık çiftliği saha deneyimi sahibi olan ekibimiz sizler için en iyi olanını ortaya koyuyor.</p>*@
+                   
+                </div>
+                <div class="col-md-6">
+                    <!-- Grid row -->
+                    <div class="row gutter-10" data-lightbox="gallery">
+
+                        <div class="col-4">
+                            <a href="~/Content/images/TempImages/4.jpg" data-lightbox="gallery-item">
+                                <img class="img-fluid h-op-09 op-ts mb-2" src="~/Content/images/TempImages/4.jpg"
+                                     alt="Image">
+                            </a>
+                            <a href="~/Content/images/TempImages/5.jpg" data-lightbox="gallery-item">
+                                <img class="img-fluid h-op-09 op-ts" src="~/Content/images/TempImages/5.jpg" alt="Image">
+                            </a>
+                        </div>
+                        <div class="col-8">
+                            <a href="~/Content/images/TempImages/2.jpg" data-lightbox="gallery-item">
+                                <img class="img-fluid h-op-09 op-ts" src="~/Content/images/TempImages/2.jpg" alt="Image">
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!--<div class="section section-yogas mb-0" style="background-color: rgba(126, 150, 128,0.2); padding: 100px 0">
+            <div class="container">
+                <div class="row col-mb-50">
+                    <div class="col-md-6 col-lg-6">
+                        <div class="card" style="border-top-color: #9DC3E2;">
+                            <div class="card-body">
+                                <img style="display: block; margin-left: auto; margin-right: auto; width: 30%;" src="~/Content/images/TempIcons/man_well.svg" alt="Yoga Icon"
+                                     class="mb-3" width="60">
+                                <h3 style="text-align: center;">Murat UYSAL</h3>
+                                <p class="text-black-50">
+                                    Synergistically fashion high-payoff infrastructures for
+                                    client-centric interfaces. Distinctively e-enable market positioning.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="card" style="border-top-color: #FFB5CC;">
+                            <div class="card-body">
+                                <img style="display: block; margin-left: auto; margin-right: auto; width: 30%;" src="~/Content/images/TempIcons/man_well.svg" alt="Yoga Icon"
+                                     class="mb-3" width="60">
+                                <h3 style="text-align: center;">Ömer GÜRKAN</h3>
+                                <p class="text-black-50">
+                                    Synergistically fashion high-payoff infrastructures for
+                                    client-centric interfaces. Distinctively e-enable market positioning.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-6">
+                        <div class="card" style="border-top-color: #F4ABEF;">
+                            <div class="card-body">
+                                <img style="display: block; margin-left: auto; margin-right: auto; width: 30%;" src="~/Content/images/TempIcons/man_well.svg" alt="Yoga Icon"
+                                     class="mb-3" width="60">
+                                <h3 style="text-align: center;">Ufuk DOĞAN</h3>
+                                <p class="text-black-50">
+                                    Energistically incentivize intuitive channels for team building
+                                    mindshare. Compellingly benchmark functionalized.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-6">
+                        <div class="card" style="border-top-color: #F2A490;">
+                            <div class="card-body">
+                                <img style="display: block; margin-left: auto; margin-right: auto; width: 30%;" src="~/Content/images/TempIcons/man_well.svg" alt="Yoga Icon"
+                                     class="mb-3" width="60">
+                                <h3 style="text-align: center;">Senem ÖZMEN</h3>
+                                <p class="text-black-50">
+                                    Energistically incentivize intuitive channels for team building
+                                    mindshare. Compellingly benchmark functionalized.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="border-top-color: #9DD2D8;">
+                            <div class="card-body">
+                                <img style="display: block; margin-left: auto; margin-right: auto; width: 30%;" src="~/Content/images/TempIcons/lotus_col.svg" alt="Yoga Icon"
+                                    class="mb-3" width="60">
+                                <h3 style="text-align: center;">Classes in Natures</h3>
+                                <p class="text-black-50">Synergistically fashion high-payoff infrastructures for
+                                    client-centric interfaces. Distinctively e-enable market positioning.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="border-top-color: #D0E6A5;">
+                            <div class="card-body">
+                                <img style="display: block; margin-left: auto; margin-right: auto; width: 30%;" src="~/Content/images/TempIcons/om_col.svg" alt="Yoga Icon"
+                                    class="mb-3" width="60">
+                                <h3 style="text-align: center;">1 Free Trial Class.</h3>
+                                <p class="text-black-50">Synergistically fashion high-payoff infrastructures for
+                                    client-centric interfaces. Distinctively e-enable market positioning.</p>
+                            </div>
+                        </div>
+                    </div> 
+               </div>
+            </div>
+        </div>-->
+
+        <div class="clear"></div>
+
+
+
+    </div>
+
+</section><!-- #content end -->

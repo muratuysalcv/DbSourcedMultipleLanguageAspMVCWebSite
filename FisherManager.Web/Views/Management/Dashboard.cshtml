@@ -1,0 +1,521 @@
+﻿@using FisherManager.Web.Extensions
+@using System.Threading
+@{
+    var culture = Thread.CurrentThread.CurrentCulture.Name;
+    var CompanyId = ViewBag.CompanyId;
+    ViewBag.Title = "Dashboard";
+    Layout = "~/Views/Shared/_LayoutManagement.cshtml";
+}
+
+
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">@Html.T("PACKAGE_INFORMATION")</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <svg aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+                </button>
+            </div>
+
+            <div class="modal-body">
+                <div id="basic" class="col-lg-12 col-sm-12 col-12 layout-spacing">
+                    <center><span>@Html.T("PACKAGE_NAME")</span></center>
+                    <center><span style="font-size:20px; font:bold" id="SubscriptionName"></span></center>
+
+                    <center><button style="margin-top:8px;" class="btn btn-primary" onclick="PackageDetail()">@Html.T("PACKAGE_DETAIL")</button></center>
+                    <br />
+                    <label>@Html.T("DATE_START")</label>
+                    <input id="DateStart" type="text" name="txt" class="form-control" disabled>
+                    <label>@Html.T("DATE_END")</label>
+                    <input id="DateEnd" type="text" name="txt" class="form-control" disabled>
+
+
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button class="btn" data-dismiss="modal"><i class="flaticon-cancel-12"></i>@Html.T("CLOSE_MODAL")</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <center><span>@Html.T("COMPANY_NAME")</span></center>
+                <center><span style="font-size:20px; font:bold" id="companyNameForExtendTime">EARGE TEKNOLOJİ LİMİTED ŞTİ.</span></center>
+                <br />
+                <center><span>@Html.T("BANK_NAME")</span></center>
+                <center><span style="font-size:20px; font:bold" id="bankNameForExtendTime">FINANSBANK - ENPARA</span></center>
+                <br />
+                <center><span>@Html.T("IBAN")</span></center>
+                <center><span style="font-size:20px; font:bold" id="IBANForExtendTime">TR94 0011 1000 0000 0096 7725 15</span></center>
+                <br />
+                <center><span>@Html.T("DESCRIPTION_FOR_EXTEND_TIME")</span></center>
+                <textarea id="descriptionForExtendTime" class="form-control" rows="2"></textarea>
+            </div>
+
+
+            <div class="modal-footer">
+
+                <button onclick="ExtendTime()" class="btn btn-success" data-dismiss="modal"><i class="flaticon-cancel-12"></i>@Html.T("SEND_NOTIF")</button>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="layout-px-spacing">
+    <div class="row"><br /></div>
+    <div id="isDayLeft" hidden class="alert alert-arrow-right alert-icon-right alert-light-danger mb-4" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><svg xmlns="http://www.w3.org/2000/svg" data-dismiss="alert" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-x close"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg></button>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-alert-circle"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12" y2="16"></line></svg>
+        <strong>@Html.T("DAYS_HAVE_EXPIRED")</strong>
+    </div>
+
+    <div class="row layout-spacing">
+
+        <!-- Content -->
+        <div class="col-xl-3 col-lg-3 col-md-6 col-sm-12 layout-top-spacing">
+
+            <div class="user-profile layout-spacing">
+                <div class="widget-content widget-content-area">
+                    <div class="d-flex justify-content-between">
+                        <h3 class="">@Html.T("COMPANY_DETAIL_PROFILE_INFO_TITLE")</h3>
+                        <a style="margin-top:40px;">
+
+                            <path d="M12 20h9"></path>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path>
+
+                        </a>
+                    </div>
+                    <div class="text-center user-info">
+
+                        <p id="companyName" class=""></p>
+                    </div>
+                    <div class="user-info-list">
+
+                        <div class="">
+                            <ul class="contacts-block list-unstyled">
+                                <li id="companyDescription" class="contacts-block__item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-coffee"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path><line x1="6" y1="1" x2="6" y2="4"></line><line x1="10" y1="1" x2="10" y2="4"></line><line x1="14" y1="1" x2="14" y2="4"></line></svg>
+                                </li>
+                                <li id="companyDateCreate" class="contacts-block__item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                                </li>
+                                <li id="companyFullAddress" class="contacts-block__item">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-map-pin"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+
+        <div class="col-xl9 col-lg-9 col-md-6 col-sm-12 layout-top-spacing">
+            <div class="bio layout-spacing ">
+                <div class="widget-content widget-content-area">
+
+                    <h3 class="">@Html.T("COMPANY_INFORMATION2")</h3>
+
+                    <div class="bio-skill-box">
+
+                        <div class="row">
+                            <div class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 ">
+                                <div class="d-flex b-skills">
+                                    <div class="">
+                                        <h5>@Html.T("COMPANY_DETAIL_FINANCIAL")</h5>
+                                        <p id="companyTaxNumberAndTaxOffice"></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="isRootControl" hidden class="col-12 col-xl-6 col-lg-12 mb-xl-5 mb-5 ">
+
+                                <div class="d-flex b-skills">
+
+                                    <div class="">
+                                        <h5>@Html.T("COMPANY_DETAIL_PRODUCTION_CAPACITY")</h5>
+                                        <p id="companyProductionCapacity"></p>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <br />
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+        <div class="col-xl-12 col-lg-12 col-sm-12  layout-spacing">
+
+
+            <div class="row">
+                <div class="col-xl-12 col-lg-12 col-sm-12 lay/out-spacing">
+                    <div class="widget-content widget-content-area br-6">
+                        <h3 class="">@Html.T("COMPANY_DETAIL_COMPANY_SUBSCRIPTION")</h3>
+                        <div class="table-responsive mb-4 mt-4">
+                            <table id="companySubscriptionList" class="table table-hover non-hover" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th>@Html.T("COMPANY_SUBSCRIPTION_NAME")</th>
+                                        <th>@Html.T("COMPANY_DATE_START")</th>
+                                        <th>@Html.T("COMPANY_DATE_END")</th>
+                                        <th>@Html.T("COMPANY_DAYS_LEFT")</th>
+                                        <th>@Html.T("COMPANY_SUBSCRIPTION_STATUS")</th>
+                                        <th class="">@Html.T("DT_ACTION")</th>
+                                        <th class="">@Html.T("DT_ANOTHER_ACTION")</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                            <br />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+        </div>
+
+    </div>
+</div>
+
+
+@section scripts{
+    <script type="text/javascript">
+        feather.replace();
+    </script>
+    <script>
+
+        $(document).ready(function () {
+            var companyId = @CompanyId;
+            GetCompanyDetailForProfile(companyId);
+            CompanySubscriptionControl(companyId);
+            loadEmailTable();
+            loadSubscriptionTable();
+            GetSubscriptionInfo();
+
+        });
+        var subscriptionId = 0;
+        var CompSubsId = 0;
+        function SetId(id) {
+            CompSubsId  = id;
+        }
+        function loadEmailTable() {
+            var companyId = @CompanyId;
+            var data = {
+                companyId: companyId
+            }
+            $('#companyEMailList').DataTable({
+                ajax: {
+                    url: "@Url.Action("GetCompanyEMailx", "Management")" + "?companyId=" + companyId,
+                    type: "POST",
+
+                    dataType: "JSON",
+                },
+
+                columns: [
+                    {
+                        data: "DESCRIPTION", name: "DESCRIPTION",
+                        render: function (data) {
+                            var html = "";
+                            html += '<center><i title="'+data+'" class="far fa-eye"></i><span class="icon-name"></span></center>';
+                            return html;
+                        },
+                        orderable: false
+                    },
+                    {
+                        data: "PARAMETER_VALUE", name: "PARAMETER_VALUE"
+
+                    },
+                    //{
+                    //    data: "COMPANY_PARAMETER_ID", name: "COMPANY_PARAMETER_ID",
+                    //    render: function (data) {
+                    //        var html = "";
+                    //        return html;
+                    //    }
+                    //},
+
+                ],
+                serverSide: "true",
+                order: [0, "asc"],
+                processing: "true",
+                "oLanguage": {
+                    "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                    "sInfo": "_PAGES_ sayfadan _PAGE_ sayfa gösteriliyor.",
+                    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                    "sSearchPlaceholder": "Ara...",
+                    "sLengthMenu": "Sonuçlar :  _MENU_",
+                    "sProcessing": "Bekleyiniz...",
+                    "sZeroRecords": "Kayıt bulunamadı.",
+                    "sInfoEmpty": "Kayıt bulunamadı.",
+                    "sInfoFiltered": "_MAX_ kayıt içerisinden filtrelendi.",
+                    "sPaginate": {
+                        "sFirst": "İlk",
+                        "sLast": "Son",
+                        "sNext": "Sonraki",
+                        "sPrevious": "Önceki"
+                    },
+                    "aria": {
+                        "sSortAscending": ": Küçükten büyüğe sıralanıyor.",
+                        "sSortDescending": ": Büyükten küçüğe sıralanıyor."
+                    }
+                },
+                "stripeClasses": [],
+                "lengthMenu": [5, 20, 50],
+                "pageLength": 5
+            });
+        };
+        function GetCompanyDetailForProfile(companyId) {
+            var data = {
+                companyId: companyId
+            }
+            $.ajax({
+                 url: "@Url.Action("GetCompanyDetail", "Management")",
+                 type: "POST",
+                 data: JSON.stringify(data),
+                 dataType: "JSON",
+                 contentType: "application/json; charset=utf-8",
+                 success: function (response) {
+                     console.log(response);
+                     if (response.NAME == "" || response.NAME == null) {
+                         $("#companyName").attr("hidden", true);
+                     }
+                     else {
+                         $("#companyName").append(response.NAME);
+                     }
+                     if (response.DESCRIPTION == "" || response.DESCRIPTION == null) {
+                         $("#companyDescription").attr("hidden", true);
+                     }
+                     else {
+                         $("#companyDescription").append(response.DESCRIPTION);
+
+                     }
+
+                     if (response.ADDRESS == "" || response.ADDRESS == null) {
+                         $("#companyFullAddress").attr("hidden", true);
+                     }
+                     else {
+                         $("#companyFullAddress").append(response.ADDRESS + ", " + response.DISTRICT + ", " + response.CITY + ", " + response.COUNTRY);
+
+                     }
+                     if (response.TAX_NUMBER != "" && response.TAX_NUMBER != null && response.TAX_OFFICE != null && response.TAX_OFFICE != "") {
+                         $("#companyTaxNumberAndTaxOffice").append(response.TAX_NUMBER + ", " + response.TAX_OFFICE);
+
+                     }
+                     else {
+                         $("#companyTaxNumberAndTaxOffice").append("-");
+
+                     }
+                     if (response.IS_ROOT != 1) {
+                         $("#isRootControl").removeAttr('hidden');
+                         $("#companyProductionCapacity").append(response.PRODUCTION_CAPACITY)
+                     }
+
+
+                     $("#companyProfilePicture").attr("hidden", true);
+                     $("#companyDateCreate").append(response.DATE_CREATE_STR);
+
+                 },
+                 error: function (result) {
+
+                 }
+
+            });
+        }
+        function CompanySubscriptionControl(companyId) {
+            var data = {
+                companyId: companyId
+            }
+            $.ajax({
+                url: "@Url.Action("GetCompanySubscriptionDaysLeft", "Management")",
+                data: JSON.stringify(data),
+                type: "POST",
+                dataType: "JSON",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    console.log(response);
+                   //TODO
+                    if (response == false) {
+                        $("#isDayLeft").removeAttr('hidden');
+                    }
+                 },
+                 error: function (result) {
+
+                 }
+
+            });
+        }
+        function loadSubscriptionTable() {
+            var companyId = @CompanyId;
+            var data = {
+                companyId: companyId
+            }
+            $('#companySubscriptionList').DataTable({
+                ajax: {
+                    url: "@Url.Action("GetSubscriptionForCompany", "Management")" + "?companyId=" + companyId,
+                    type: "POST",
+                    dataType: "JSON",
+
+                },
+
+                columns: [
+                    {
+                        data: "SYSTEM_CODE_NAME", name: "SYSTEM_CODE_NAME",
+
+                    },
+                    {
+                        data: "DATE_START_STR", name: "DATE_STUrUrlRT_STR"
+
+                    },
+                    {
+                        data: "DATE_END_STR", name: "DATE_END_STR"
+
+                    },
+                    {
+                        data: "DAYS_LEFT", name: "DAYS_LEFT",
+                    },
+                    {
+                        data: "IS_ACTIVE", name: "IS_ACTIVE",
+                        render: function (data) {
+
+                            var html = "";
+                            if (data == "Pasif" || data == "Passive") {
+
+                                html += '<span class="badge badge-danger" > '+data+' </span>';
+                                return html;
+                            }
+                            else {
+                                html += '<span class="badge badge-success">'+data+'</span>';
+                                return html;
+                            }
+                        }
+
+                    },
+                    {
+                        data: "ID", name: "ID",
+                        render: function (data) {
+                            var html = "";
+                            html += '<button class="btn btn-primary btn-rounded mb-2" data-toggle="modal" data-target="#exampleModalCenter" onclick="SubscriptionDetail(' + data + ')">Detay</button>';
+                            return html;
+                        },
+                        orderable: false
+                    },
+                    {
+                        data: "ID", name: "ID",
+                        render: function (data) {
+                            var html = "";
+                            html += '<button class="btn btn-warning btn-rounded mb-2" data-toggle="modal" data-target="#exampleModalCenter2" onclick="SetId('+data+')">Süreyi Uzat</button>';
+                            return html;
+                        },
+                        orderable: false
+                    },
+                ],
+                serverSide: "true",
+                order: [0, "asc"],
+                processing: "true",
+                "oLanguage": {
+                    "oPaginate": { "sPrevious": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-left"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>', "sNext": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-arrow-right"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>' },
+                    "sInfo": "_PAGES_ sayfadan _PAGE_ sayfa gösteriliyor.",
+                    "sSearch": '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>',
+                    "sSearchPlaceholder": "Ara...",
+                    "sLengthMenu": "Sonuçlar :  _MENU_",
+                    "sProcessing": "Bekleyiniz...",
+                    "sZeroRecords": "Kayıt bulunamadı.",
+                    "sInfoEmpty": "Kayıt bulunamadı.",
+                    "sInfoFiltered": "_MAX_ kayıt içerisinden filtrelendi.",
+                    "sPaginate": {
+                        "sFirst": "İlk",
+                        "sLast": "Son",
+                        "sNext": "Sonraki",
+                        "sPrevious": "Önceki"
+                    },
+                    "aria": {
+                        "sSortAscending": ": Küçükten büyüğe sıralanıyor.",
+                        "sSortDescending": ": Büyükten küçüğe sıralanıyor."
+                    }
+                },
+                "stripeClasses": [],
+                "lengthMenu": [5, 20, 50],
+                "pageLength": 5
+            });
+        }
+        function SubscriptionDetail(id) {
+            var data = {
+                id: id
+            }
+            $.ajax({
+                 url: "@Url.Action("GetCompanySubscriptionDetail", "Management")",
+                 type: "POST",
+                 data: JSON.stringify(data),
+                 dataType: "JSON",
+                 contentType: "application/json; charset=utf-8",
+                 success: function (response) {
+                     console.log(response);
+                     $("#DateEnd").val(response.DATE_END_STR);
+                     $("#DateStart").val(response.DATE_START_STR);
+                     $("#SubscriptionName").append(response.SYSTEM_CODE_NAME);
+                     subscriptionId = response.SUBSCRIPTION_ID;
+                 },
+                 error: function (result) {
+
+                 }
+
+            });
+
+
+        }
+        function PackageDetail() {
+
+            window.location.href = "@Url.Action("SubscriptionDetail", "Management")" + "?subscriptionId=" + subscriptionId;
+        }
+        function ExtendTime() {
+            debugger;
+            var data = {
+                id: CompSubsId,
+                description: $("#descriptionForExtendTime").val()
+            }
+            $.ajax({
+                url: "@Url.Action("ExtendTimeWithTransfer", "Management")",
+                data: JSON.stringify(data),
+                type: "POST",
+                dataType: "JSON",
+                contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    swal({
+                        type: 'success',
+                        title: '',
+
+                        padding: '2em'
+                    })
+                },
+                error: function (result) {
+
+                }
+
+            });
+        }
+    </script>
+
+}

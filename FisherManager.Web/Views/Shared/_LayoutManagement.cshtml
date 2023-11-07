@@ -1,0 +1,247 @@
+﻿@using FisherManager.Web.Extensions
+@using System.Threading
+@{
+    Layout = null;
+    var culture = Thread.CurrentThread.CurrentCulture.Name;
+    var sessionAccount = FisherManager.Web._Base.SessionHelper.GetSession();
+
+}
+
+<!DOCTYPE html>
+<html lang="@culture">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>@Html.T("MANAGEMENT_TITLE")</title>
+    <link rel="icon" type="image/x-icon" href="~/Content/ManagementContent/assets/img/favicon.ico" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="~/Content/ManagementContent/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ManagementContent/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME GLOBAL STYLES -->
+    <link href="~/Content/ManagementContent/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ManagementContent/plugins/animate/animate.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/ManagementContent/plugins/sweetalerts/promise-polyfill.js"></script>
+    <link href="~/Content/ManagementContent/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ManagementContent/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ManagementContent/assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/ManagementContent/plugins/table/datatable/datatables.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/ManagementContent/plugins/table/datatable/custom_dt_html5.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/ManagementContent/plugins/table/datatable/dt-global_style.css">
+    <link href="~/Content/ManagementContent/assets/css/loader.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/ManagementContent/assets/js/loader.js"></script>
+    <link href="~/Content/ManagementContent/assets/css/users/user-profile.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ManagementContent/assets/css/scrollspyNav.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/ManagementContent/plugins/select2/select2.min.css">
+    <link href="~/Content/ManagementContent/plugins/tagInput/tags-input.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ManagementContent/assets/css/elements/popover.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/ManagementContent/plugins/font-icons/fontawesome/css/regular.css">
+    <link rel="stylesheet" href="~/Content/ManagementContent/plugins/font-icons/fontawesome/css/fontawesome.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/ManagementContent/assets/css/elements/alert.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/ManagementContent/assets/css/forms/switches.css">
+    <link href="~/Content/ManagementContent/plugins/pricing-table/css/component.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/ManagementContent/plugins/dropify/dropify.min.css">
+    <link href="~/Content/ManagementContent/assets/css/users/account-setting.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/ManagementContent/plugins/jquery-step/jquery.steps.css">
+    <link href="~/Content/ManagementContent/assets/css/pages/faq/faq2.css" rel="stylesheet" type="text/css" />
+    <style>
+        #formValidate .wizard > .content {
+            min-height: 25em;
+        }
+
+        #example-vertical.wizard > .content {
+            min-height: 24.5em;
+        }
+    </style>
+    <!-- END THEME GLOBAL STYLES -->
+</head>
+<body data-spy="scroll" data-target="#navSection" data-offset="100">
+    <!-- BEGIN LOADER -->
+    <div id="load_screen">
+        <div class="loader">
+            <div class="loader-content">
+                <div class="spinner-grow align-self-center"></div>
+            </div>
+        </div>
+    </div>
+    <!--  END LOADER -->
+    <!--  BEGIN NAVBAR  -->
+    <div class="header-container fixed-top">
+        <header  class="header navbar navbar-expand-sm">
+
+            <ul class="navbar-item theme-brand flex-row  text-center">               
+                <li class="nav-item theme-text">
+                    <a href="http://fishermanager.com" class="nav-link">FisherManager® </a>
+                </li>
+            </ul>
+            <ul class="navbar-item flex-row ml-md-auto">
+
+                <li class="nav-item dropdown language-dropdown">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <img src="~/Content/ManagementContent/assets/img/ca.png" class="flag-width" alt="flag">
+                    </a>
+                    <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
+                        <a class="dropdown-item d-flex" href="@(Url.Action("Home", "Management", new {Culture="tr-TR" }))"><img src="http://cdn2.iconfinder.com/data/icons/flags/flags/32/Turkey.png" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;@Html.T("MANAGEMENT_LANGUAGE_TURKISH")</span></a>
+                        <a class="dropdown-item d-flex" href="@(Url.Action("Home", "Management", new {Culture="en-US" }))"><img src="http://cdn2.iconfinder.com/data/icons/flags/flags/32/England.png" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;@Html.T("MANAGEMENT_LANGUAGE_ENGLISH")</span></a>
+                    </div>
+                </li>
+                <!-- Sonra Kullanılabilecek Alanlar -->
+
+                <li class="nav-item dropdown user-profile-dropdown">
+                    <a href="javascript:void(0);" class="nav-link dropdown-toggle user" id="userProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                        <img src="~/Content/ManagementContent/assets/img/90x90.jpg" alt="avatar">
+                    </a>
+                    <div class="dropdown-menu position-absolute" aria-labelledby="userProfileDropdown">
+                        <div class="">
+                            <div class="dropdown-item">
+                                <a class="" href="user_profile.html"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg> @Html.T("MANAGEMENT_MY_PROFILE")</a>
+                            </div>
+                            <div class="dropdown-item">
+                                <a class="" href="#" onclick="Logout()"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-log-out"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg> @Html.T("MANAGEMENT_LOG_OUT")</a>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+            </ul>
+        </header>
+    </div>
+    <!--  END NAVBAR  -->
+    <!--  BEGIN NAVBAR  -->
+    <div class="sub-header-container">
+        <header class="header navbar navbar-expand-sm">
+            <a href="javascript:void(0);" class="sidebarCollapse" data-placement="bottom"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg></a>
+
+        
+        </header>
+    </div>
+    <!--  END NAVBAR  -->
+    <!--  BEGIN MAIN CONTAINER  -->
+    <div class="main-container" id="container">
+
+        <div class="overlay"></div>
+        <div class="search-overlay"></div>
+
+        <!--  BEGIN SIDEBAR  -->
+        <div class="sidebar-wrapper sidebar-theme">
+
+            <nav id="sidebar">
+                <div class="shadow-bottom"></div>
+
+                <ul class="list-unstyled menu-categories" id="accordionExample">
+                    @*@if (FisherManager.Web._Base.SessionHelper.IsCustomer() || FisherManager.Web._Base.SessionHelper.IsAdministrator())
+        {
+            <li class="menu">
+                <a href="@(Url.Action("Home", "Management", new {Culture=@culture }))" aria-expanded="false" class="dropdown-toggle">
+                    <div class="">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                        <span>@Html.T("MANAGEMENT_MAIN_PAGE")</span>
+                    </div>
+                </a>
+            </li>
+        }*@
+                    @if (FisherManager.Web._Base.SessionHelper.IsAdministrator())
+                    {
+                        <li class="menu">
+                            <a href="@(Url.Action("CompanyList", "Management", new { Culture = @culture }))" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                    <span>@Html.T("MANAGEMENT_COMPANY_LIST")</span>
+                                </div>
+                            </a>
+                        </li>
+                    }
+                    @if (FisherManager.Web._Base.SessionHelper.IsCustomer())
+                    {
+                        <li class="menu">
+                            <a href="@(Url.Action("Dashboard", "Management", new { Culture = @culture }))" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                    <span>@Html.T("MANAGEMENT_COMPANY_DASHBOARD")</span>
+                                </div>
+                            </a>
+                        </li>
+                    }
+                    @if (FisherManager.Web._Base.SessionHelper.IsCustomer())
+                    {
+                        <li class="menu">
+                            <a href="@(Url.Action("CompanyInformations", "Management", new { Culture = @culture }))" aria-expanded="false" class="dropdown-toggle">
+                                <div class="">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-target"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+                                    <span>@Html.T("MANAGEMENT_COMPANY_INFORMATION")</span>
+                                </div>
+                            </a>
+                        </li>
+                    }
+                </ul>
+            </nav>
+
+        </div>
+        <!--  END SIDEBAR  -->
+        <!--  BEGIN CONTENT AREA  -->
+        <div id="content" class="main-content">
+            @RenderBody()
+        </div>
+        <!--  END CONTENT AREA  -->
+    </div>
+    <!-- END MAIN CONTAINER -->
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <script src="~/Content/ManagementContent/assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="~/Content/ManagementContent/bootstrap/js/popper.min.js"></script>
+    <script src="~/Content/ManagementContent/bootstrap/js/bootstrap.min.js"></script>
+    <script src="~/Content/ManagementContent/plugins/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="~/Content/ManagementContent/assets/js/app.js"></script>
+    <script src="~/Content/ManagementContent/plugins/table/datatable/datatables.js"></script>
+    <!-- NOTE TO Use Copy CSV Excel PDF Print Options You Must Include These Files  -->
+    <script src="~/Content/ManagementContent/plugins/table/datatable/button-ext/dataTables.buttons.min.js"></script>
+    <script src="~/Content/ManagementContent/plugins/table/datatable/button-ext/jszip.min.js"></script>
+    <script src="~/Content/ManagementContent/plugins/table/datatable/button-ext/buttons.html5.min.js"></script>
+    <script src="~/Content/ManagementContent/plugins/table/datatable/button-ext/buttons.print.min.js"></script>
+    <script src="~/Content/ManagementContent/assets/js/scrollspyNav.js"></script>
+    <script src="~/Content/ManagementContent/plugins/select2/select2.min.js"></script>
+    <script src="~/Content/ManagementContent/plugins/select2/custom-select2.js"></script>
+    <script src="~/Content/ManagementContent/plugins/input-mask/jquery.inputmask.bundle.min.js"></script>
+    <script src="~/Content/ManagementContent/plugins/input-mask/input-mask.js"></script>
+    <script src="~/Content/ManagementContent/plugins/tagInput/tags-input.js"></script>
+    <script>
+        $(document).ready(function () {
+            App.init();
+        });
+    </script>
+    <script src="~/Content/ManagementContent/plugins/highlight/highlight.pack.js"></script>
+    <script src="~/Content/ManagementContent/assets/js/custom.js"></script>
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <!-- BEGIN THEME GLOBAL STYLE -->
+    <script src="~/Content/ManagementContent/assets/js/scrollspyNav.js"></script>
+    <script src="~/Content/ManagementContent/plugins/sweetalerts/sweetalert2.min.js"></script>
+    <script src="~/Content/ManagementContent/plugins/sweetalerts/custom-sweetalert.js"></script>
+    <script src="~/Content/ManagementContent/assets/js/elements/popovers.js"></script>
+    <script src="~/Content/ManagementContent/plugins/font-icons/feather/feather.min.js"></script>
+    <script src="~/Content/ManagementContent/plugins/jquery-step/jquery.steps.min.js"></script>
+    <script src="~/Content/ManagementContent/plugins/jquery-step/custom-jquery.steps.js"></script>
+    <script src="~/Content/ManagementContent/plugins/dropify/dropify.min.js"></script>
+    <script src="~/Content/ManagementContent/plugins/blockui/jquery.blockUI.min.js"></script>
+    <script src="~/Content/ManagementContent/assets/js/pages/faq/faq2.js"></script>
+    <!-- <script src="plugins/tagInput/tags-input.js"></script> -->
+    <script src="~/Content/ManagementContent/assets/js/users/account-settings.js"></script>
+    <script type="text/javascript">
+        feather.replace();
+    </script>
+    <!-- END THEME GLOBAL STYLE -->
+    <script>
+        function Logout() {
+            $.ajax({
+                url: "@Url.Action("Logout", "Login")",
+                success: function (response) {
+                    window.location.href = "@Url.Action("Logout", "Login")";
+                },
+                error: function (result) {
+                }
+            });
+        }
+    </script>
+    @RenderSection("scripts", false)
+</body>
+</html>

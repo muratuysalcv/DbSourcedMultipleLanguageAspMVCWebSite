@@ -1,0 +1,67 @@
+﻿@model MENU
+@using FisherManager.Web.Extensions
+@{
+}
+<section id="page-title" class="bg-color page-title-dark py-6">
+    <div class="container clearfix">
+        <h1>
+            @Model.NAME
+        </h1>
+        <!-- <span></span> -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Html.ActionUrl("Index","Home")">@Html.T("Menu_Home")</a></li>
+            <li class="breadcrumb-item active" aria-current="page">@Model.NAME</li>
+        </ol>
+    </div>
+</section>
+<section id="content">
+    <div class="content-wrap pb-0">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-12">
+                    <h2 class="font-weight-normal display-4"> <span>@Model.NAME</span></h2>
+                    <p class="text-black-50">
+                        @Html.Raw(Model.DESCRIPTION)
+                    </p>
+                    <!-- <p class="text-black-50">Lorem ipsum, dolor sit amet, consectetur adipisicing elit. Blanditiis
+                        animi, aperiam magnam doloribus quis sunt molestiae expedita, maiores error accusantium dolore
+                        ipsam cumque.</p> -->
+                    <!-- <a href="#"
+                        class="btn rounded bg-color text-white shadow text-uppercase font-weight-semibold ls1 py-3 px-4">Know
+                        More</a> -->
+                </div>
+                <!--<div class="col-md-6">-->
+                <!-- Grid row -->
+                <!--<div class="row gutter-10" data-lightbox="gallery">
+
+                        <div class="col-4">
+                            <a href="demos/yoga/images/gallery/4.jpg" data-lightbox="gallery-item">
+                                <img class="img-fluid h-op-09 op-ts mb-2" src="demos/yoga/images/gallery/4.jpg" alt="Image">
+                            </a>
+                            <a href="demos/yoga/images/gallery/5.jpg" data-lightbox="gallery-item">
+                                <img class="img-fluid h-op-09 op-ts" src="demos/yoga/images/gallery/5.jpg" alt="Image">
+                            </a>
+                        </div>
+                        <div class="col-8">
+                            <a href="demos/yoga/images/gallery/2.jpg" data-lightbox="gallery-item">
+                                <img class="img-fluid h-op-09 op-ts" src="demos/yoga/images/gallery/2.jpg" alt="Image">
+                            </a>
+                        </div>
+
+                    </div>
+                </div>-->
+
+            </div>
+
+        </div>
+
+
+
+        <div class="clear"></div>
+
+
+
+    </div>
+
+</section>
+

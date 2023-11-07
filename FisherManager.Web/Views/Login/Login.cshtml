@@ -1,0 +1,164 @@
+﻿@using FisherManager.Web.Extensions
+@using System.Threading
+@{
+    Layout = null;
+    var culture = Thread.CurrentThread.CurrentCulture.Name;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+    <title>@Html.T("MANAGEMENT_LOGIN_TITLE")</title>
+    <link rel="icon" type="image/x-icon" href="~/Content/ManagementContent/assets/img/favicon.ico" />
+    <!-- BEGIN GLOBAL MANDATORY STYLES -->
+    <link href="https://fonts.googleapis.com/css?family=Nunito:400,600,700" rel="stylesheet">
+    <link href="~/Content/ManagementContent/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ManagementContent/assets/css/plugins.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ManagementContent/assets/css/authentication/form-1.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ManagementContent/plugins/animate/animate.css" rel="stylesheet" type="text/css" />
+    <script src="~/Content/ManagementContent/plugins/sweetalerts/promise-polyfill.js"></script>
+    <link href="~/Content/ManagementContent/plugins/sweetalerts/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ManagementContent/plugins/sweetalerts/sweetalert.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/ManagementContent/assets/css/components/custom-sweetalert.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- END GLOBAL MANDATORY STYLES -->
+    <link rel="stylesheet" type="text/css" href="~/Content/ManagementContent/assets/css/forms/theme-checkbox-radio.css">
+    <link rel="stylesheet" type="text/css" href="~/Content/ManagementContent/assets/css/forms/switches.css">
+</head>
+<body class="form">
+    <div class="form-container">
+        <div class="form-form">
+            <div class="form-form-wrap">
+                <div class="form-container">
+                    <div class="form-content">
+
+
+                        <!--TODO: Dil seçimi ayarlanmalı-->
+                        <!--
+                                                <ul>
+                                                    <li class="nav-item dropdown language-dropdown">
+                                                        <a href="javascript:void(0);" class="nav-link dropdown-toggle" id="language-dropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                            <span>Language</span>
+                                                        </a>
+                                                        <div class="dropdown-menu position-absolute" aria-labelledby="language-dropdown">
+                                                            <a class="dropdown-item d-flex" href="@(Url.Action("Login", "Login", new {Culture="tr-TR" }))"><img src="http://cdn2.iconfinder.com/data/icons/flags/flags/32/Turkey.png" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;@Html.T("MANAGEMENT_LANGUAGE_TURKISH")</span></a>
+                                                            <a class="dropdown-item d-flex" href="@(Url.Action("Login", "Login", new {Culture="en-US" }))"><img src="http://cdn2.iconfinder.com/data/icons/flags/flags/32/England.png" class="flag-width" alt="flag"> <span class="align-self-center">&nbsp;@Html.T("MANAGEMENT_LANGUAGE_ENGLISH")</span></a>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                        -->
+
+                        <h1 class="">
+                            <a href="http://fishermanager.com"><span class="brand-name">FisherManager®️ </span></a>
+                            <span>@Html.T("MANAGEMENT_LOGIN_LOGIN_MANAGEMENT_SYSTEM")</span>
+
+                        </h1>
+
+                        <form class="text-left">
+                            <div class="form">
+
+                                <div id="username-field" class="field-wrapper input">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-user"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path><circle cx="12" cy="7" r="4"></circle></svg>
+                                    <input id="username" name="username" type="text" class="form-control" placeholder="@Html.T("MANAGEMENT_LOGIN_USERNAME")">
+                                </div>
+
+                                <div id="password-field" class="field-wrapper input mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-lock"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg>
+                                    <input id="password" name="password" type="password" class="form-control" placeholder="@Html.T("MANAGEMENT_LOGIN_PASSWORD")">
+                                </div>
+                                <div class="d-sm-flex justify-content-between">
+                                    <div class="field-wrapper toggle-pass">
+                                        <p class="d-inline-block">@Html.T("MANAGEMENT_LOGIN_SHOW_PASSWORD")</p>
+                                        <label class="switch s-primary">
+                                            <input type="checkbox" id="toggle-password" class="d-none">
+                                            <span class="slider round"></span>
+                                        </label>
+                                    </div>
+                                    <div class="field-wrapper">
+                                        <button type="button" onclick="Login()" class="btn btn-primary" value="">@Html.T("MANAGEMENT_LOGIN_LOGIN")</button>
+                                    </div>
+
+                                </div>
+                                @*<div class="field-wrapper">
+                                    <a href="auth_pass_recovery.html" class="forgot-pass-link">@Html.T("MANAGEMENT_LOGIN_FORGOT_PASSWORD")</a>
+                                </div>*@
+
+                            </div>
+                        </form>
+                        <p class="terms-conditions"><a href="http://www.fishermanager.com">fishermanager.com</a> | @Html.T("LAYOUT_COPYRIGHT")</p>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="form-image">
+            <div>
+                <img src=@Url.Content("~/Content/themeCss/images/section/1.jpg") />
+            </div>
+            @*<div class="l-image">
+                </div>*@
+        </div>
+    </div>
+
+
+    <!-- BEGIN GLOBAL MANDATORY SCRIPTS -->
+    <script src="~/Content/ManagementContent/assets/js/libs/jquery-3.1.1.min.js"></script>
+    <script src="~/Content/ManagementContent/bootstrap/js/popper.min.js"></script>
+    <script src="~/Content/ManagementContent/bootstrap/js/bootstrap.min.js"></script>
+
+    <!-- END GLOBAL MANDATORY SCRIPTS -->
+    <script src="~/Content/ManagementContent/assets/js/authentication/form-1.js"></script>
+    <script src="~/Content/ManagementContent/assets/js/scrollspyNav.js"></script>
+    <script src="~/Content/ManagementContent/plugins/sweetalerts/sweetalert2.min.js"></script>
+    <script src="~/Content/ManagementContent/plugins/sweetalerts/custom-sweetalert.js"></script>
+    <script src="~/Content/ManagementContent/plugins/highlight/highlight.pack.js"></script>
+    <script src="~/Content/ManagementContent/assets/js/custom.js"></script>
+</body>
+</html>
+<script>
+
+        function ClearValues() {
+            $(':input').val('');
+        }
+        function Login() {
+            var data = {
+                username: $("#username").val(),
+                password: $("#password").val()
+            }
+            $.ajax({
+                 url: "@Url.Action("Login", "Login")",
+                 type: "POST",
+                 data: JSON.stringify(data),
+                 dataType: "JSON",
+                 contentType: "application/json; charset=utf-8",
+                success: function (response) {
+                    console.log(response);
+                    if (response.RESOURCE_KEY == "LOGIN_SUCCESS") {
+                        ClearValues();
+                        window.location.href = "@Url.Action("Dashboard","Management")";
+                    }
+                    else {
+                        ClearValues();
+                        swal({
+                            type: 'error',
+                            title: response.RESOURCE_VALUE + '',
+                            
+                            padding: '2em'
+                        })
+                    }
+                 },
+                 error: function (result) {
+
+
+                     ClearValues();
+                 }
+
+            });
+        }
+
+
+</script>

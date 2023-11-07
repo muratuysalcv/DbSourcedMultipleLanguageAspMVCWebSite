@@ -1,0 +1,337 @@
+﻿@using FisherManager.Web.Extensions
+@using System.Threading;
+@{ 
+    var culture = Thread.CurrentThread.CurrentCulture.Name;
+}
+<!DOCTYPE html>
+<html lang="@culture">
+<head>
+
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <meta name="author" content="SemiColonWeb" />
+
+    <!-- Stylesheets
+    ============================================= -->
+    <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700&display=swap" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="~/Content/css/bootstrap.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/style.css" type="text/css" />
+
+    <link rel="stylesheet" href="~/Content/css/dark.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/css/font-icons.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/css/animate.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/css/magnific-popup.css" type="text/css" />
+
+    <link rel="stylesheet" href="~/Content/css/custom.css" type="text/css" />
+
+    <!-- Movers Demo Specific Stylesheet -->
+    <link rel="stylesheet" href="~/Content/themeCss/css/fonts.css" type="text/css" />
+    <link rel="stylesheet" href="~/Content/themeCss/movers.css" type="text/css" />
+    <!-- / -->
+    <!-- DatePicker CSS -->
+    <link rel="stylesheet" href="~/Content/css/components/datepicker.css" type="text/css" />
+
+    <meta name='viewport' content='initial-scale=1, viewport-fit=cover'>
+
+    <!-- Document Title
+    ============================================= -->
+    <title>FisherManager® | @Html.T("MAIN_TITLE")</title>
+    <meta name="description" content="@Html.T("MAIN_DESCRIPTION")">
+
+    <style>
+        .flags {
+            width: 200px;
+            height: 32px;
+            /* sağa almak için "float: right;" kullanabilirsiniz*/
+            float: left;
+        }
+
+            .flags ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+            }
+
+                .flags ul li {
+                    display: inline;
+                }
+    </style>
+
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-109878592-1"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-109878592-1');
+    </script>
+
+    <!--Start of Tawk.to Script-->
+    <script type="text/javascript">
+        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
+        (function () {
+            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
+            s1.async = true;
+            s1.src = 'https://embed.tawk.to/640101b04247f20fefe3a376/1gqhut6sv';
+            s1.charset = 'UTF-8';
+            s1.setAttribute('crossorigin', '*');
+            s0.parentNode.insertBefore(s1, s0);
+        })();
+    </script>
+    <!--End of Tawk.to Script-->
+
+</head>
+
+<body class="stretched">
+    <!-- Document Wrapper
+    ============================================= -->
+    <div id="wrapper" class="clearfix">
+        <!-- Header
+        ============================================= -->
+        <header id="header" class="dark header-size-sm" data-sticky-shrink="false">
+            <div class="container">
+                <div class="header-row">
+
+                    <!-- Logo
+                    ============================================= -->
+                    <div id="logo" class="ml-auto ml-md-0" style="height:70px;">
+                        <a href="@Url.Content("~/"+culture)" class="standard-logo" data-dark-logo="@Url.Content("~/Content/images/fishermanagerlogo.png")">
+                            <img class="mx-auto" src="~/Content/images/fishermanagerlogo.png" alt="Fisher Manager A.Ş">
+                        </a>
+                        <a href="@Url.Content("~/"+culture)" class="retina-logo" data-dark-logo="@Url.Content("~/Content/images/fishermanagerlogo.png")">
+                            <img class="mx-auto" src="~/Content/images/fishermanagerlogo.png" alt="Fisher Manager A.Ş">
+                        </a>
+                    </div><!-- #logo end -->
+
+                    <ul class="header-extras d-none d-sm-flex mx-auto mx-md-0 mb-4 mb-md-0">
+                        <li class="text-md-right">
+                            <div class="flags">
+                                <ul>
+                                    <li>
+
+                                        <a href="@(Url.Action("Index", "Home", new {Culture="en-US" }))" style="color:#fff">English</a> |
+                                        <a href="@(Url.Action("Index", "Home", new {Culture="tr-TR" }))" style="color:#fff">Türkçe</a>
+
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="i-plain icon-call m-0"></i>
+                            <div class="he-text font-weight-normal text-white-50">
+                                @Html.T("LAYOUT_CALL_US")
+                                <span><a href="tel:+902325703759" class="text-white font-weight-medium">+90 0 232 570 37 59</a></span>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="i-plain icon-line2-envelope m-0"></i>
+                            <div class="he-text font-weight-normal text-white-50">
+                                @Html.T("LAYOUT_SEND_MAIL")
+                                <span><a href="mailto:info@fishermanager.com" target="_top" class="text-white font-weight-medium">info@fishermanager.com</a></span>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                </div>
+            </div>
+
+            <div id="header-wrap">
+                <div class="container">
+                    <div class="header-row justify-content-between flex-row-reverse flex-lg-row">
+
+                        <div class="header-misc">
+
+                            <!-- Top Search
+                            ============================================= -->
+                            @*<div id="top-search" class="header-misc-icon">
+                                    <a href="#" id="top-search-trigger"><i class="icon-line-search"></i><i class="icon-line-cross"></i></a>
+                                </div>*@
+                            <!-- #top-search end -->
+                            <!-- Header Buttons
+                            ============================================= -->
+                            @*<div class="header-buttons d-none d-sm-inline-block">
+                                    <a href="#slider" data-scrollto="#slider" data-offset="-80" class="button button-rounded button-white button-light button-small m-0">@Html.T("LAYOUT_GET_OFFER")</a>
+                                </div>*@
+
+                        </div>
+
+                        <div id="primary-menu-trigger">
+                            <svg class="svg-trigger" viewBox="0 0 100 100"><path d="m 30,33 h 40 c 3.722839,0 7.5,3.126468 7.5,8.578427 0,5.451959 -2.727029,8.421573 -7.5,8.421573 h -20"></path><path d="m 30,50 h 40"></path><path d="m 70,67 h -40 c 0,0 -7.5,-0.802118 -7.5,-8.365747 0,-7.563629 7.5,-8.634253 7.5,-8.634253 h 20"></path></svg>
+                        </div>
+
+
+                        <nav class="primary-menu with-arrows not-dark">
+                            @Html.Action("Menu", "Home")
+                        </nav>
+
+                        @*<form class="top-search-form" action="search.html" method="get">
+                                <input type="text" name="q" class="form-control" value="" placeholder="@Html.T("LAYOUT_SEARCH")" autocomplete="off">
+                            </form>*@
+
+                    </div>
+                </div>
+            </div>
+            <div class="header-wrap-clone"></div>
+        </header>
+        @RenderBody()
+
+        <footer id="footer" class="border-0">
+
+            <div class="container">
+
+                <!-- Footer Widgets
+                ============================================= -->
+                <div class="footer-widgets-wrap pb-4 clearfix">
+
+                    <div class="row">
+
+                        <div class="col-lg-2 col-md-2 col-6">
+                            <div class="widget clearfix">
+                                <h4 class="ls0 mb-4 nott">@Html.T("LAYOUT_MENU")</h4>
+                                @Html.Action("FooterMenu", "Home")
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-6">
+                            @*<div class="widget clearfix">
+
+                                    <h4 class="ls0 mb-4 nott">@Html.T("LAYOUT_SPECIFICATIONS")</h4>
+
+                                    <ul class="list-unstyled iconlist ml-0">
+                                        <li class="mb-2"><a href="#">@Html.T("LAYOUT_HELP_CENTER")</a></li>
+                                        <li class="mb-2"><a href="#">@Html.T("LAYOUT_SUPPORT")</a></li>
+                                    </ul>
+
+                                </div>*@
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-6">
+                            <!-- <div class="widget clearfix">
+
+                                <h4 class="ls0 mb-4 nott">Trending</h4>
+
+                                <ul class="list-unstyled iconlist ml-0">
+                                    <li class="mb-2"><a href="~/Content/#">Shop</a></li>
+                                    <li class="mb-2"><a href="~/Content/#">Portfolio</a></li>
+                                    <li class="mb-2"><a href="~/Content/#">Blog</a></li>
+                                    <li class="mb-2"><a href="~/Content/#">Events</a></li>
+                                    <li class="mb-2"><a href="~/Content/#">Forums</a></li>
+                                </ul>
+
+                            </div> -->
+                        </div>
+                        <div class="col-lg-2 col-md-2 col-6">
+                            <!-- <div class="widget clearfix">
+
+                                <h4 class="ls0 mb-4 nott">Get to Know us</h4>
+
+                                <ul class="list-unstyled iconlist ml-0">
+                                    <li class="mb-2"><a href="~/Content/#">Corporate</a></li>
+                                    <li class="mb-2"><a href="~/Content/#">Agency</a></li>
+                                    <li class="mb-2"><a href="~/Content/#">eCommerce</a></li>
+                                    <li class="mb-2"><a href="~/Content/#">Personal</a></li>
+                                    <li class="mb-2"><a href="~/Content/#">OnePage</a></li>
+                                </ul>
+
+                            </div> -->
+                        </div>
+                        <div class="col-lg-4 col-md-4 text-md-right">
+                            <div class="widget clearfix">
+                                <div>
+                                    <address>Fisher Manager®️ Su Ürünleri Teknolojileri A.Ş.<br></address>
+                                    @*<h4 class="ls0 mb-4 nott">
+                                        @Html.T("LAYOUT_ADDRESS")</h4>*@
+                                    <address>
+                                        Mistral Plaza Kat: 39 Ankara Cd. No: 15<br>
+                                        Bayraklı, İzmir<br><br>
+                                    </address>
+                                    <h3 class="mb-3">
+                                        <a href="tel:+902325703759"><i class="icon-call mr-1" style="font-size: 22px;"></i>+90 232 570 37 59</a>
+                                    
+                                    </h3>
+                                    @*<div class="d-flex justify-content-md-end">
+                                            <a href="~/Content/#" class="social-icon si-small si-facebook" title="Facebook">
+                                                <i class="icon-facebook"></i>
+                                                <i class="icon-facebook"></i>
+                                            </a>
+
+                                            <a href="~/Content/#" class="social-icon si-small si-instagram" title="instagram">
+                                                <i class="icon-instagram"></i>
+                                                <i class="icon-instagram"></i>
+                                            </a>
+
+                                            <a href="~/Content/#" class="social-icon si-small si-paypal" title="Paypal">
+                                                <i class="icon-paypal"></i>
+                                                <i class="icon-paypal"></i>
+                                            </a>
+
+                                            <a href="~/Content/#" class="social-icon si-small si-wikipedia" title="Apple Pay">
+                                                <i class="icon-apple-pay"></i>
+                                                <i class="icon-apple-pay"></i>
+                                            </a>
+                                        </div>*@
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div><!-- .footer-widgets-wrap end -->
+
+            </div>
+
+            <!-- Copyrights
+            ============================================= -->
+            <div id="copyrights" class="bg-transparent">
+
+                <div class="container clearfix">
+
+                    <div class="row justify-content-between align-items-center">
+                        <div class="col-md-6 text-black-50">
+                            www.fishermanager.com | @Html.T("LAYOUT_COPYRIGHT")
+                        </div>
+                        <div class="col-md-6 d-md-flex flex-md-column align-items-md-end mt-4 mt-md-0">
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div><!-- #copyrights end -->
+
+        </footer><!-- #footer end -->
+
+    </div><!-- #wrapper end -->
+    <!-- Go To Top
+    ============================================= -->
+    <div id="gotoTop" class="icon-angle-up"></div>
+
+    <!-- JavaScripts
+    ============================================= -->
+    <script src="~/Content/js/jquery.js"></script>
+    <script src="~/Content/js/plugins.min.js"></script>
+
+    <!-- DatePicker JS -->
+    <script src="~/Content/js/components/datepicker.js"></script>
+
+    <!-- Footer Scripts
+    ============================================= -->
+    <script src="~/Content/js/functions.js"></script>
+
+
+    <script src="~/Content/fancy/fancybox/jquery.easing-1.3.pack.js"></script>
+    <script src="~/Content/fancy/fancybox/jquery.fancybox-1.3.4.pack.js"></script>
+
+    <script>
+
+        jQuery('.home-date').datepicker({
+            autoclose: true,
+            startDate: "today",
+        });
+    </script>
+    @RenderSection("bottom_scripts", false)
+
+    @RenderSection("scripts", false)
+</body>
+</html>

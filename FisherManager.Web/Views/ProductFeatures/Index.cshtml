@@ -1,0 +1,701 @@
+﻿@using FisherManager.Web.Extensions
+@using System.Threading
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var culture = Thread.CurrentThread.CurrentCulture.Name;
+}
+<section id="page-title" class="bg-color page-title-dark py-6">
+    <div class="container clearfix">
+        <h1>
+            @Html.T("PRODUCT_FEAUTURES_TITLE")
+        </h1>
+        <!-- <span></span> -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Html.ActionUrl("Index","Home")">@Html.T("Menu_Home")</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                @Html.T("PRODUCT_FEAUTURES_TITLE")
+            </li>
+        </ol>
+    </div>
+</section>
+<section id="content">
+    <div class="content-wrap pb-0">
+        <div class="container py-5">
+            <div class="container mb-5 features">
+                <h2 class="font-weight-normal display-4"> <span>@Html.T("PRODUCT_FEAUTURES_TITLE")</span></h2>
+
+                @if (culture == "tr-TR")
+                {
+
+
+
+                    <div class="section-clients ">
+                        <div class="clear"></div>
+                        <div class="row mt-4">
+                            <div class="col-md-12"><h2>Balık Çiftliği Yönetim Ana Sayfası</h2></div>
+                            <div class="col-md-6">
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_home_page.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_home_page.png" />
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                Ana sayfada çiftliğinizdeki tüm balıkların o anki durumunu görebilmenizi sağlayan özet bilgi alanı yer almaktadır.<br />
+
+                                Bu bölümde <br />
+                                <br />
+                                - Balığın o anki ağırlığı<br />
+                                - Toplam tükettiği yem miktarı<br />
+                                - Ölüm miktarı<br />
+                                - Hasat miktarı<br />
+                                - Başlangıç ağırlık ve boyut bilgileri<br /><br />
+                                gibi önemli bilgileri görebilirsiniz.
+
+                                <br />
+                                <br />
+                                Sol bölümde de kullanıcının yetkisine göre erişebileceği menüler yer almaktadır.
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12"><h2>Balık Yetiştirme İşlem Menüsü</h2></div>
+                            <div class="col-md-6">
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_home_farm_actions.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_home_farm_actions.png" />
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                Aktif büyümesi devam eden tüm balıkların üzerinde işlem menüsü yer alır. Bu menü ile
+                                balık ile ilgili işlemleri kolayca yapabileceğiniz işlem listesi açılır.
+                                <br />
+
+                                Bu bölümde <br />
+                                <br />
+                                - Balık Kartı Görüntüleme<br />
+                                - Balık Yemleme<br />
+                                - Ölü Balık Kayıt<br />
+                                - Hasat<br />
+
+                                - Medikal<br />
+                                - Boylama<br />
+                                - Kafes Değiştirme<br />
+                                - Bildirim<br />
+                                <br />
+
+                                İşlem menüsü açılmaktadır.
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12"><h2>Balık Kartı</h2></div>
+                            <div class="col-md-6">
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_home_fish_card.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_home_fish_card.png" />
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                Balık kartı menüsü ile seçilen balığın tüm bilgilerini görebilirsiniz.
+                                <br />
+                                <br />
+
+                                Balık kartı sayfasında;<br />
+
+                                - Balık Başlangıç ve O Anki Bilgileri<br />
+                                - Balık Boylamaları<br />
+                                - Ölüm Kayıtları<br />
+                                - Veteriner Kayıtları<br />
+
+                                - Yemlemeler<br />
+                                - Hasatlar<br />
+                                - Kullanıcıların Yaptığı Tüm İşlem Tarihçesi<br />
+                                <br />
+
+                                bilgilerine tek bir sayfadan erişilebilmektedir.<br />
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12"><h2>Balık Yemleme Formu</h2></div>
+                            <div class="col-md-6">
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_feeding_form.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_fish_feeding_form.png" />
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                Balık yemleme formun üzerinden kayıtlı stoklarınıza göre yemleme kaydı girebilirsiniz.
+                                <br />
+                                <br />
+
+                                Balık yemleme formunda;<br />
+
+                                - Platform<br />
+                                - Yem Stoğu<br />
+                                - Yemleme Tarihi<br />
+                                - Yemleme FCR Değeri<br />
+
+                                - Yemlemenin Yapılacağı Balık<br />
+                                - Yem Miktarı<br />
+                                - Yem Analiz Bilgisi<br />
+                                <br />
+
+                                alanları yer alır ve yemleme yapılacak balıklar ve miktarı değiştirilerek tek ekranda yemleme işlemi tamamlanabilmektedir.
+
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12"><h2>Ölü Balık Girişi</h2></div>
+                            <div class="col-md-6">
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_death_form.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_fish_death_form.png" />
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                İlgili kafeste ölü balık adetini ve nedenini girebilirsiniz.
+                                <br />
+                                <br />
+
+                                Ölü balık formunda;<br />
+
+                                - <br />
+                                - Balık<br />
+                                - Ölüm Nedeni<br />
+                                - Adet<br />
+
+                                - Ölüm Tarihi<br />
+                                <br />
+
+                                alanları yer alır ve ölüm kaydı girildiği anda tüm raporları bilgi yansır.
+                            </div>
+                        </div>
+
+                        <div class="row mt-4">
+                            <div class="col-md-12"><h2>Balık Boylama</h2></div>
+                            <div class="col-md-6">
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_sizing_form.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_fish_sizing_form.png" />
+                                </a>
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_sizing_form_review.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_fish_sizing_form_review.png" />
+                                </a>
+                            </div>
+                            <div class="col-md-6">
+                                Balık boylama işlemi balık çiftliği yönetimi için çok kritik önemli bir işlemdir.
+                                Fisher Manager bu işlemi tüm ayrıntısı ile istenen boylama işleminin yapılabilmesi için
+                                esnek bir yapıya sahiptir.
+                                <br />
+                                <br />
+                                Boylama işlemi ile ilgili tüm bilgileri belirleyip istenen tüm boylama olasılıklarına izin veren gelişmiş bir form yer almaktadır.
+                                <br />
+                                <br />
+
+                                Boylama formunda yer alan bilgiler;<br />
+
+                                <b>Boylanacak Balık Bilgileri</b>
+                                <br />
+                                - Kafeste Kalacak Balık Adeti<br />
+                                - Kafeste Kalan Balığın Ort. Ağırlığı<br />
+                                - Kafeste Kalacak Balığın Kodu<br />
+                                - Kalan Balığa Aktarılacak Yediği Yem Miktarı Bilgisi <br />
+                                <br />
+                                <b>Hedef Kafesles Bilgileri</b><br />
+
+                                - Hefef Kafesin Seçimi<br />
+                                - Hedef Kafese Aktarılacak Balık Adeti<br />
+                                - Hedef Kafese Aktarılacak Balık Org. Ağırlığı<br />
+                                - Hedef Kafesin Aktarım Sonrası Balık Kodu<br />
+                                <br />
+
+                                Hedef kafesler çoklu olarak seçilebilmektedir. Böylece istenen adette kafese boylama işlemi yapılabilmektedir.
+                                İşlem onaylanmadan önce inceleme fırsatı sunmaktadır. Böylece çok önemli bir işlem olan boylama öncesi,
+                                işlemi uygulamadan önce boylama sonucunu görme şansı sunulmaktadır. Bir tutarsızlık varsa da Fisher Manager inceleme bölümünde uyarı vermektedir.
+
+                                <br /><br />
+
+
+                                Fisher Manager boylama sonucu
+                                oluşacak olan balıkların ortalama ağırlık ve adetlerini hesaplamaktadır. Ayrıca toplam yediği yem miktarı ve ölüm adetlerini de oransal olarak boylanan balıklara dağıtmaktadır.
+
+                                <br />
+                                <br />
+                                Fisher Manager bu işlemleri yaparken, tüm adımları kayıt etmektedir. Böylece raporlarda boylama öncesi ve boylama sonrası tüm bilgiler kullanılarak ayrıntılı sonuçlar
+                                sunabilmektir.
+
+                                <br /><br /> Boylama işlemlerinin sonucunda hasat ile balığın ne kadar verimli büyüyüp büyümediğine dair de ayrıntı elde edilebilmektedir.<br />
+                            </div>
+                        </div>
+
+
+
+                        <div class="row mt-4">
+                            <div class="col-md-12"><h2>Günlük Ölçümler</h2></div>
+                            <div class="col-md-6">
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_daily_data.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_fish_daily_data.png" />
+                                </a>
+
+                            </div>
+                            <div class="col-md-6">
+                                Balık çiftliklerinde çok önemli günlük ölçümlerin kayıt edilmesini sağlayan formdur.
+                                <br />
+                                <br />
+                                Günlük ölçüm kayıt formunda yer alan bilgiler;<br />
+
+                                <br />
+                                - Ölçüm Tarihi<br />
+                                - Hava Durumu<br />
+                                - Oksijen Miktarı(Sabah,Akşam)<br />
+                                - Oksijen Doygunluğu (Sabah,Akşam)<br />
+                                - Su Sıcaklığı (Sabah,Akşam)<br />
+                                - Ölüm Yapılan Platform
+                                <br />
+                                Bilgilerine göre veri girişi yapılmakta ve Fisher Manager bu verileri kullanarak daha doğru karar vermenize yardım etmektedir.
+                            </div>
+                        </div>
+
+
+                        <div class="row mt-4">
+                            <div class="col-md-12"><h2>Günlük Ölçümler</h2></div>
+                            <div class="col-md-6">
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_daily_data.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_fish_daily_data.png" />
+                                </a>
+
+                            </div>
+                            <div class="col-md-6">
+                                Balık çiftliklerinde çok önemli günlük ölçümlerin kayıt edilmesini sağlayan formdur.
+                                <br />
+                                <br />
+                                Günlük ölçüm kayıt formunda yer alan bilgiler;<br />
+
+                                <br />
+                                - Ölçüm Tarihi<br />
+                                - Hava Durumu<br />
+                                - Oksijen Miktarı(Sabah,Akşam)<br />
+                                - Oksijen Doygunluğu (Sabah,Akşam)<br />
+                                - Su Sıcaklığı (Sabah,Akşam)<br />
+                                - Ölüm Yapılan Platform
+                                <br />
+                                Bilgilerine göre veri girişi yapılmakta ve Fisher Manager bu verileri kullanarak daha doğru karar vermenize yardım etmektedir.
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12"><h2>Üretim Raporu</h2></div>
+                            <div class="col-md-6">
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_production_report.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_fish_production_report.png" />
+                                </a>
+
+                            </div>
+                            <div class="col-md-6">
+                                Üretim raporları bir balık çiftliği için en önemli raporlardandır.
+                                <br />
+                                <br />
+                                Balıkların tüm üretim süreçlerinin sonuç raporu olan bu raporda görsel görüleceği üzere tüm bilgiler yer almaktadır.<br />
+
+                                <br />
+
+                                Ayrıca Fisher Manager rapor türü olarak 4 farklı üretim raporu çeşidi sunmaktadır.
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12"><h2>Boylama Aşı Raporu</h2></div>
+                            <div class="col-md-6">
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_vacine_report.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_fish_vacine_report.png" />
+                                </a>
+
+                            </div>
+                            <div class="col-md-6">
+                                Yapılan tüm boylama işlemlerine göre, ayrıntılı şekilde tüm bilgilerin yer aldığı ve isteğe bağlı olarak
+                                çıktı alınabilecek boylama ve aşı raporu alınabilmektedir.
+                                <br />
+                                <br />
+                                <b>Raporda Yer Alan Bilgileri</b><br /><br />
+                                - Doküman No <br />
+                                - Yayın Tarihi <br />
+                                - Revizyon No<br />
+                                - Revizyon Tarihi<br />
+                                - Aşılanan Kafes <br />
+                                - Raporda Gözüken Adet <br />
+                                - Aşıda Çıkan Adet <br />
+                                - Çıkan Fark <br />
+                                - Aşı, İğne ve Anestezi Bilgileri <br />
+                                <br />
+
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12"><h2>Balık Ölüm Raporu</h2></div>
+                            <div class="col-md-6">
+                                <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_death_reason_report.png">
+                                    <img src="~/Content/fish-management-software/fish_farm_management_fish_death_reason_report.png" />
+                                </a>
+
+                            </div>
+                            <div class="col-md-6">
+                                Balık ölümlerinin ölüm türü bazında gruplanarak rapor elde edilmesini sağlar.
+                                <br />
+                                <br />
+                                <b>Raporda Yer Alan Bilgileri</b><br /><br />
+                                - Balık Kodu <br />
+                                - Ölüm Sebebi<br />
+                                - Ölüm Adeti<br />
+                                - Ölüm Oranı<br />
+
+                                <br />
+
+                            </div>
+                        </div>
+                        <div class="row mt-4">
+                            <div class="col-md-12">
+
+                                Fisher Manager burada yer alan modüllere ek birçok modül ile tüm yönetimi tek bir yazılım üzerinden yapabilmenize imkan vermektedir. Daha ayrıntılı bilgi için
+                                info@fishermanager.com üzerinden demo talebinde bulunabilirsiniz.
+                                <br />
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                }
+                else
+                {
+
+            <div class="section-clients ">
+                <div class="clear"></div>
+                <div class="row mt-4">
+                    <div class="col-md-12"><h2>Fish Farm Management Homepage</h2></div>
+                    <div class="col-md-6">
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_home_page.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_home_page.png" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        On the main page, there is a summary information area that allows you to see the current status of all fish in your farm.<br />
+
+                        In this section <br />
+                        <br />
+                        - The current weight of the fish<br />
+                        - Total amount of feed consumed<br />
+                        - Amount of death<br />
+                        - Harvest amount<br />
+                        - Initial weight and size information<br /><br />
+                        You can see important information such as
+
+                        <br />
+                        <br />
+                        In the left part, there are menus that the user can access according to his authority.
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12"><h2>Fish Breeding Process Menu</h2></div>
+                    <div class="col-md-6">
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_home_farm_actions.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_home_farm_actions.png" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        All fish that continue to grow actively have a process menu on them. with this menu
+                        A list of operations opens, where you can easily perform operations related to fish.
+                        <br />
+
+                        In this section <br />
+                        <br />
+                        - Fish Card Display<br />
+                        - Fish Feeding<br />
+                        - Dead Fish Record<br />
+                        - Harvest<br />
+
+                        - Medical<br />
+                        - Sorting<br />
+                        - Lattice Change<br />
+                        - Notification<br />
+                        <br />
+
+                        The action menu opens.
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12"><h2>Fish Card</h2></div>
+                    <div class="col-md-6">
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_home_fish_card.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_home_fish_card.png" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        With the fish card menu, you can see all the information of the selected fish.
+                        <br />
+                        <br />
+
+                        On the fish card page;<br />
+
+                        - Pisces Initial and Current Information<br />
+                        - Fish Lengths<br />
+                        - Death Records<br />
+                        - Veterinary Records<br />
+
+                        - Feeds<br />
+                        - Harvests<br />
+                        - History of All Transactions by Users<br />
+                        <br />
+
+                        information can be accessed from a single page.<br />
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12"><h2>Fish Feeding Form</h2></div>
+                    <div class="col-md-6">
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_feeding_form.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_fish_feeding_form.png" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        You can enter a feeding record according to your registered stocks on the fish feeding form.
+                        <br />
+                        <br />
+
+                        In the form of feeding fish;<br />
+
+                        - Platform<br />
+                        - Feed Stock<br />
+                        - Feeding Date<br />
+                        - Feeding FCR Value<br />
+
+                        - Fish to be fed<br />
+                        - Feed Amount<br />
+                        - Feed Analysis Information<br />
+                        <br />
+
+                        areas and the feeding process can be completed on a single screen by changing the fish to be fed and the amount.
+
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12"><h2>Dead Fish Entry</h2></div>
+                    <div class="col-md-6">
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_death_form.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_fish_death_form.png" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        You can enter the number of dead fish in the corresponding cage and the reason.
+                        <br />
+                        <br />
+
+                        In the form of dead fish;<br />
+
+                        - <br />
+                        - Fish<br />
+                        - Cause of Death<br />
+                        - Quantity<br />
+
+                        - Date of Death<br />
+                        <br />
+
+                        fields and all reports are displayed as soon as the death record is entered.
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12"><h2>Fish Length</h2></div>
+                    <div class="col-md-6">
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_sizing_form.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_fish_sizing_form.png" />
+                        </a>
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_sizing_form_review.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_fish_sizing_form_review.png" />
+                        </a>
+                    </div>
+                    <div class="col-md-6">
+                        Fish grading is a critical process for fish farm management.
+                        Fisher Manager can use this process in all details to perform the desired grading process.
+                        It has a flexible structure.
+                        <br />
+                        <br />
+                        There is an advanced form that specifies all information about the sorting process and allows all desired sorting possibilities.
+                        <br />
+                        <br />
+
+                        Information in the sizing form;<br />
+
+                        <b>Fish Information to be Graded</b>
+                        <br />
+                        - Number of Fish in the Cage<br />
+                        - Caged Fish Avg. Weight<br />
+                        - The Code of the Fish to Stay in the Cage<br />
+                        - Information on the Amount of Feed Eaten to Transfer to the Remaining Fish <br />
+                        <br />
+                        <b>Target Meshes Information</b><br />
+
+                        - Selection of Hefef Cage<br />
+                        - Number of Fish to be Transferred to the Target Cage<br />
+                        - Fish Org. Weight<br />
+                        - Post Transfer Fish Code of Target Cage<br />
+                        <br />
+
+                        Target cages can be selected as multiple. Thus, the desired number of cages can be sorted.
+                        It offers the opportunity to review the transaction before it is approved. Thus, before grading, which is a very important process,
+                        Before applying the process, the chance to see the grading result is offered. If there is an inconsistency, Fisher Manager gives a warning in the review section.
+
+                        <br /><br />
+
+
+                        Fisher Manager grading result
+                        calculates the average weight and number of fish to be formed. In addition, it distributes the total amount of feed eaten and the number of deaths proportionally to the sized fish.
+
+                        <br />
+                        <br />
+                        Fisher Manager records all steps while performing these operations. Thus, detailed results are obtained by using all the information before and after sorting in the reports.
+                        is to present.
+
+                        <br /><br /> As a result of the grading processes, details can be obtained about how efficiently the fish grows with the harvest.<br />
+                    </div>
+                </div>
+
+
+
+                <div class="row mt-4">
+                    <div class="col-md-12"><h2>Daily Measurements</h2></div>
+                    <div class="col-md-6">
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_daily_data.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_fish_daily_data.png" />
+                        </a>
+
+                    </div>
+                    <div class="col-md-6">
+                        It is the form that allows recording of very important daily measurements in fish farms.
+                        <br />
+                        <br />
+                        Information in the daily measurement record form;<br />
+
+                        <br />
+                        - Measurement Date<br />
+                        - Weather<br />
+                        - Amount of Oxygen (Morning, Evening)<br />
+                        - Oxygen Saturation (Morning, Evening)<br />
+                        - Water Temperature (Morning, Evening)<br />
+                        - Platform of Death
+                        <br />
+                        Data entry is made according to their information and Fisher Manager helps you make more accurate decisions by using this data.
+                    </div>
+                </div>
+
+
+                <div class="row mt-4">
+                    <div class="col-md-12"><h2>Daily Measurements</h2></div>
+                    <div class="col-md-6">
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_daily_data.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_fish_daily_data.png" />
+                        </a>
+
+                    </div>
+                    <div class="col-md-6">
+                        It is the form that allows recording of very important daily measurements in fish farms.
+                        <br />
+                        <br />
+                        Information in the daily measurement record form;<br />
+
+                        <br />
+                        - Measurement Date<br />
+                        - Weather<br />
+                        - Amount of Oxygen (Morning, Evening)<br />
+                        - Oxygen Saturation (Morning, Evening)<br />
+                        - Water Temperature (Morning, Evening)<br />
+                        - Platform of Death
+                        <br />
+                        Data entry is made according to their information and Fisher Manager helps you make more accurate decisions by using this data.
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12"><h2>Production Report</h2></div>
+                    <div class="col-md-6">
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_production_report.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_fish_production_report.png" />
+                        </a>
+
+                    </div>
+                    <div class="col-md-6">
+                        Production reports are one of the most important reports for a fish farm.
+                        <br />
+                        <br />
+                        This report, which is the final report of all production processes of fish, contains all the information as can be seen in the visual.<br />
+
+                        <br />
+
+                        In addition, Fisher Manager offers 4 different production report types as report type.
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12"><h2>Staining Vaccination Report</h2></div>
+                    <div class="col-md-6">
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_vacine_report.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_fish_vacine_report.png" />
+                        </a>
+
+                    </div>
+                    <div class="col-md-6">
+                        According to all the grading processes, it includes all the information in detail and optionally.
+                        A printable grading and vaccination report can be obtained.
+                        <br />
+                        <br />
+                        <b>Information in the Report</b><br /><br />
+                        - Document No <br />
+                        - Release Date <br />
+                        - Revision Number<br />
+                        - Revision Date<br />
+                        - Inoculated Cage <br />
+                        - Quantity Appearing in the Report <br />
+                        - Vaccination Quantity <br />
+                        - The Difference <br />
+                        - Vaccine, Needle and Anesthesia Information <br />
+                        <br />
+
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12"><h2>Fish Mortality Report</h2></div>
+                    <div class="col-md-6">
+                        <a data-lightbox="screens" href="~/Content/fish-management-software/fish_farm_management_fish_death_reason_report.png">
+                            <img src="~/Content/fish-management-software/fish_farm_management_fish_death_reason_report.png" />
+                        </a>
+
+                    </div>
+                    <div class="col-md-6">
+                        It provides reports by grouping fish deaths on the basis of death type.
+                        <br />
+                        <br />
+                        <b>Information in the Report</b><br /><br />
+                        - Fish Code <br />
+                        - Cause of Death<br />
+                        - Number of Death<br />
+                        - Mortality Rate<br />
+
+                        <br />
+
+                    </div>
+                </div>
+                <div class="row mt-4">
+                    <div class="col-md-12">
+
+                        Fisher Manager allows you to do all the management through a single software with many modules in addition to the modules here. For more detailed information
+                        You can request a demo via info@fishermanager.com.
+                        <br />
+                    </div>
+                </div>
+
+
+            </div>
+
+
+
+
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<style>
+    .features img{border:3px solid #ddd;margin:3px;padding:3px;}
+</style>
+@section bottom_scripts{
+    <link href="~/Content/lightbox/dist/css/lightbox.min.css" rel="stylesheet" />
+    <script src="~/Content/lightbox/dist/js/lightbox.min.js"></script>
+    
+    }

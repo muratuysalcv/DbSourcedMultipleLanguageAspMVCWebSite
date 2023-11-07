@@ -1,0 +1,55 @@
+﻿@using FisherManager.Web.Extensions
+@using System.Threading;
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    var culture = Thread.CurrentThread.CurrentCulture.Name;
+}
+<section id="page-title" class="bg-color page-title-dark py-6">
+    <div class="container clearfix">
+        <h1>
+            @Html.T("Menu_Contact")
+        </h1>
+        <!-- <span></span> -->
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="@Html.ActionUrl("Index","Home")">@Html.T("Menu_Home")</a></li>
+            <li class="breadcrumb-item active" aria-current="page">
+                @Html.T("Menu_Contact")
+            </li>
+        </ol>
+    </div>
+</section>
+<section id="content">
+    <div class="content-wrap pb-0">
+        <div class="container">
+            <div class="row justify-content-between">
+                <div class="col-md-12">
+                    @*<h2 class="font-weight-normal display-4"> <span>@Html.T("Menu.Contact")</span></h2>*@
+                    <p class="text-black-50">
+                        <div class="row">
+                            <div class="col-md-4" style="line-height:30px;">
+                                <b>@Html.T("CONTACT_COMPANY")</b><br />
+                                Fisher Manager Su Ürünleri Teknolojileri A.Ş. <br />
+                                <b>@Html.T("CONTACT_ADDRESS")</b><br />
+                                Mistral Plaza Kat: 39 Ankara Cad. No: 15 <br />
+                                Bayraklı / İzmir
+
+
+                                <br />
+                                <b>@Html.T("CONTACT_EMAIL")</b><br />
+                                info@fishermanager.com<br />
+                                <b>@Html.T("CONTACT_PHONE")</b><br />
+
+                                                               <a href="tel:+902325703759"> +90 232 570 37 59</a>
+                            </div>
+                            <div class="col-md-8">
+                                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d6249.439393410219!2d27.178662!3d38.447943!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x61a1d4487dc1019c!2sFishermanager.com%20-%20Bal%C4%B1k%20%C3%87iftli%C4%9Fi%20Yaz%C4%B1l%C4%B1m%C4%B1%20-%20Fish%20Farm%20Management%20Software!5e0!3m2!1str!2str!4v1613232866375!5m2!1str!2str" height="450" frameborder="0" style="border:0;width:100%;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                            </div>
+                        </div>
+                    </p>
+                </div>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,1522 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="fishermanager_webModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="COMPANY">
+          <Key>
+            <PropertyRef Name="COMPANY_ID" />
+          </Key>
+          <Property Name="COMPANY_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="IS_DELETE" Type="bit" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATE" Type="datetime" />
+          <Property Name="DATE_DELETE" Type="datetime" />
+          <Property Name="NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar(max)" />
+          <Property Name="IS_ROOT" Type="bit" />
+          <Property Name="COUNTRY" Type="nvarchar(max)" />
+          <Property Name="CITY" Type="nvarchar(max)" />
+          <Property Name="DISTRICT" Type="nvarchar(max)" />
+          <Property Name="TAX_NUMBER" Type="nvarchar(max)" />
+          <Property Name="ADDRESS" Type="nvarchar(max)" />
+          <Property Name="TAX_OFFICE" Type="nvarchar(max)" />
+          <Property Name="PRODUCTION_CAPACITY" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="COMPANY_ACCOUNTING">
+          <Key>
+            <PropertyRef Name="COMPANY_ACCOUNTING_ID" />
+          </Key>
+          <Property Name="COMPANY_ACCOUNTING_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="IS_DELETE" Type="bit" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATE" Type="datetime" />
+          <Property Name="DATE_DELETE" Type="datetime" />
+          <Property Name="COMPANY_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMPANY_PARAMETER">
+          <Key>
+            <PropertyRef Name="COMPANY_PARAMETER_ID" />
+          </Key>
+          <Property Name="COMPANY_PARAMETER_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_ID" Type="int" Nullable="false" />
+          <Property Name="PARAMETER_TYPE_CODE" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="PARAMETER_VALUE" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="COMPANY_PAYMENT">
+          <Key>
+            <PropertyRef Name="COMPANY_PAYMENT_ID" />
+          </Key>
+          <Property Name="COMPANY_PAYMENT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="IS_DELETE" Type="bit" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATE" Type="datetime" />
+          <Property Name="DATE_DELETE" Type="datetime" />
+          <Property Name="COMPANY_ACCOUNTING_ID" Type="int" Nullable="false" />
+          <Property Name="LAST_PAYMENT_DATE" Type="datetime" Nullable="false" />
+          <Property Name="TOTAL_DEBT" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="PAID" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CURRENCY_TYPE" Type="int" Nullable="false" />
+          <Property Name="IS_COMPLETE" Type="bit" Nullable="false" />
+          <Property Name="COMPANY_SUBSCRIPTION_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="COMPANY_PAYMENT_TRANSACTION">
+          <Key>
+            <PropertyRef Name="COMPANY_PAYMENT_TRANSACTION_ID" />
+          </Key>
+          <Property Name="COMPANY_PAYMENT_TRANSACTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="IS_DELETE" Type="bit" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATE" Type="datetime" />
+          <Property Name="DATE_DELETE" Type="datetime" />
+          <Property Name="COMPANY_PAYMENT_ID" Type="int" Nullable="false" />
+          <Property Name="PAID" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CURRENCY_TYPE" Type="int" Nullable="false" />
+          <Property Name="CURRENCY_VALUE" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="CURRENCY_PAID" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="BILL_NUMBER" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="RESPONSIBLE_USER_ID" Type="int" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_CODE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="COMPANY_SUBSCRIPTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="COMPANY_ID" Type="int" Nullable="false" />
+          <Property Name="SUBSCRIPTION_ID" Type="int" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="IS_DELETE" Type="bit" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATE" Type="datetime" />
+          <Property Name="DATE_DELETE" Type="datetime" />
+          <Property Name="DATE_START" Type="datetime" Nullable="false" />
+          <Property Name="DATE_END" Type="datetime" Nullable="false" />
+          <Property Name="PRICE" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CURRENCY">
+          <Key>
+            <PropertyRef Name="CURRENCY_CODE" />
+          </Key>
+          <Property Name="CURRENCY_CODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SYSTEM_NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LANGUAGE">
+          <Key>
+            <PropertyRef Name="LANGUAGE_CODE" />
+          </Key>
+          <Property Name="LANGUAGE_CODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DEFAULT_CURRENCY_CODE" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LANGUAGE_RES">
+          <Key>
+            <PropertyRef Name="RESOURCE_ID" />
+          </Key>
+          <Property Name="RESOURCE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RESOURCE_KEY" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="RESOURCE_VALUE" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="LANGUAGE_CODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="MENU_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PARENT_MENU_ID" Type="int" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LANGUAGE_CODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="SEO_URL" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="SYSTEM_CODE" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CONTROLLER_NAME" Type="nvarchar" MaxLength="500" />
+          <Property Name="ACTION_NAME" Type="nvarchar" MaxLength="500" />
+          <Property Name="DESCRIPTION" Type="nvarchar(max)" />
+          <Property Name="SHOW_ON_HEADER_MENU" Type="bit" Nullable="false" />
+          <Property Name="SHOW_ON_FOOTER_MENU" Type="bit" Nullable="false" />
+          <Property Name="DISPLAY_ORDER" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MESSAGE">
+          <Key>
+            <PropertyRef Name="MESSAGE_ID" />
+          </Key>
+          <Property Name="MESSAGE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUBJECT" Type="nvarchar(max)" />
+          <Property Name="FARM_TYPE" Type="nvarchar(max)" />
+          <Property Name="FARM_CAPACITY" Type="nvarchar" MaxLength="50" />
+          <Property Name="NUMBER_OF_EMPLOYEE" Type="nvarchar" MaxLength="50" />
+          <Property Name="COUNTRY" Type="nvarchar" MaxLength="50" />
+          <Property Name="CITY" Type="nvarchar" MaxLength="50" />
+          <Property Name="COMPANY_NAME" Type="nvarchar" MaxLength="400" />
+          <Property Name="E_MAIL" Type="nvarchar" MaxLength="100" />
+          <Property Name="PHONE_NUMBER" Type="nvarchar" MaxLength="20" />
+          <Property Name="APPOINTMENT_TIME" Type="datetime" />
+          <Property Name="CREATED_TIME" Type="datetime" />
+        </EntityType>
+        <EntityType Name="MESSAGE_SETTING">
+          <Key>
+            <PropertyRef Name="MESSAGE_SETTING_KEY" />
+          </Key>
+          <Property Name="MESSAGE_SETTING_KEY" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="MESSAGE_SETTING_VALUE" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="HOST" Type="nvarchar" MaxLength="50" />
+          <Property Name="PORT" Type="int" />
+          <Property Name="PASSWORD" Type="nvarchar(max)" />
+          <Property Name="ENABLE_SSL" Type="bit" />
+          <Property Name="DETAIL" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="MODULE">
+          <Key>
+            <PropertyRef Name="MODULE_ID" />
+          </Key>
+          <Property Name="MODULE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SYSTEM_CODE_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SYSTEM_CODE_DESCRIPTION" Type="nvarchar(max)" />
+          <Property Name="PRICE_ADDITIONAL" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="IS_DELETE" Type="bit" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATE" Type="datetime" />
+          <Property Name="DATE_DELETE" Type="datetime" />
+          <Property Name="CURRENCY_CODE" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="PACKAGE">
+          <Key>
+            <PropertyRef Name="PACKAGE_CODE" />
+          </Key>
+          <Property Name="PACKAGE_CODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar(max)" />
+          <Property Name="ACTIVE" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PACKAGE_CALCULATION">
+          <Key>
+            <PropertyRef Name="PACKAGE_CALCULATION_ID" />
+          </Key>
+          <Property Name="PACKAGE_CALCULATION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PACKAGE_CODE" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PRICE_PER_MONTH" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="CURRENCY_CODE" Type="int" />
+          <Property Name="ADDITIONAL_PRICE_PER_POOL" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ADDITIONAL_PRICE_PER_CAPACITY" Type="decimal" Precision="18" Scale="2" />
+          <Property Name="ADDITIONAL_PRICE_PER_USER" Type="decimal" Precision="18" Scale="2" />
+        </EntityType>
+        <EntityType Name="PARAMETER_TYPE">
+          <Key>
+            <PropertyRef Name="PARAMETER_TYPE_CODE" />
+          </Key>
+          <Property Name="PARAMETER_TYPE_CODE" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="SYSTEM_CODE" Type="nvarchar(max)" />
+          <Property Name="DESCRIPTION_CODE" Type="nvarchar(max)" />
+          <Property Name="NAME" Type="nvarchar" MaxLength="250" />
+          <Property Name="INPUT_TYPE" Type="nvarchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="IS_DELETE" Type="bit" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATE" Type="datetime" />
+          <Property Name="DATE_DELETE" Type="datetime" />
+          <Property Name="SYSTEM_CODE_TITLE" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="SYSTEM_CODE_DESCRIPTION" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SUBSCRIPTION">
+          <Key>
+            <PropertyRef Name="SUBSCRIPTION_ID" />
+          </Key>
+          <Property Name="SUBSCRIPTION_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SYSTEM_CODE_NAME" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="PERIOD" Type="int" Nullable="false" />
+          <Property Name="PRICE" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="IS_DELETE" Type="bit" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="datetime" Nullable="false" />
+          <Property Name="DATE_UPDATE" Type="datetime" />
+          <Property Name="DATE_DELETE" Type="datetime" />
+          <Property Name="CURRENCY_CODE" Type="nvarchar" MaxLength="50" />
+          <Property Name="SYSTEM_CODE_DESCRIPTION" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="SUBSCRIPTION_MODULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SUBSCRIPTION_ID" Type="int" Nullable="false" />
+          <Property Name="MODULE_ID" Type="int" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" Nullable="false" />
+          <Property Name="IS_DELETE" Type="bit" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="datetime" Nullable="false" />
+          <Property Name="DATE_DELETE" Type="datetime" />
+          <Property Name="DATE_UPDATE" Type="datetime" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="USER_ACCOUNT">
+          <Key>
+            <PropertyRef Name="USER_ACCOUNT_ID" />
+          </Key>
+          <Property Name="USER_ACCOUNT_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIRST_NAME" Type="nvarchar(max)" />
+          <Property Name="LAST_NAME" Type="nvarchar(max)" />
+          <Property Name="FULL_NAME" Type="nvarchar(max)" />
+          <Property Name="COMPANY_ID" Type="int" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="bit" />
+          <Property Name="IS_DELETE" Type="bit" />
+          <Property Name="DATE_CREATE" Type="datetime" />
+          <Property Name="DATE_UPDATE" Type="datetime" />
+          <Property Name="DATE_DELETE" Type="datetime" />
+          <Property Name="PASSWORD" Type="nvarchar(max)" />
+          <Property Name="USERNAME" Type="nvarchar(max)" />
+          <Property Name="E_MAIL" Type="nvarchar(max)" />
+          <Property Name="DATE_LAST_LOGIN" Type="datetime" />
+          <Property Name="ACTIVATION_CODE" Type="nvarchar(max)" />
+          <Property Name="DATE_PASSWORD_RESET_REQUEST" Type="datetime" />
+          <Property Name="PASSWORD_RESET_IS_USED" Type="bit" />
+          <Property Name="PASSWORD_RESET_CODE" Type="nvarchar(max)" />
+          <Property Name="ROLE_ID" Type="int" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="nvarchar(max)" />
+        </EntityType>
+        <Association Name="FK_COMPANY_ACCOUNTING_COMPANY">
+          <End Role="COMPANY" Type="Self.COMPANY" Multiplicity="1" />
+          <End Role="COMPANY_ACCOUNTING" Type="Self.COMPANY_ACCOUNTING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY">
+              <PropertyRef Name="COMPANY_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_ACCOUNTING">
+              <PropertyRef Name="COMPANY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_PARAMETER_COMPANY">
+          <End Role="COMPANY" Type="Self.COMPANY" Multiplicity="1" />
+          <End Role="COMPANY_PARAMETER" Type="Self.COMPANY_PARAMETER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY">
+              <PropertyRef Name="COMPANY_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_PARAMETER">
+              <PropertyRef Name="COMPANY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_PARAMETER_PARAMETER_TYPE">
+          <End Role="PARAMETER_TYPE" Type="Self.PARAMETER_TYPE" Multiplicity="1" />
+          <End Role="COMPANY_PARAMETER" Type="Self.COMPANY_PARAMETER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PARAMETER_TYPE">
+              <PropertyRef Name="PARAMETER_TYPE_CODE" />
+            </Principal>
+            <Dependent Role="COMPANY_PARAMETER">
+              <PropertyRef Name="PARAMETER_TYPE_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_PAYMENT_COMPANY_ACCOUNTING">
+          <End Role="COMPANY_ACCOUNTING" Type="Self.COMPANY_ACCOUNTING" Multiplicity="1" />
+          <End Role="COMPANY_PAYMENT" Type="Self.COMPANY_PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY_ACCOUNTING">
+              <PropertyRef Name="COMPANY_ACCOUNTING_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_PAYMENT">
+              <PropertyRef Name="COMPANY_ACCOUNTING_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_PAYMENT_TRANSACTION_COMPANY_PAYMENT">
+          <End Role="COMPANY_PAYMENT" Type="Self.COMPANY_PAYMENT" Multiplicity="1" />
+          <End Role="COMPANY_PAYMENT_TRANSACTION" Type="Self.COMPANY_PAYMENT_TRANSACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY_PAYMENT">
+              <PropertyRef Name="COMPANY_PAYMENT_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_PAYMENT_TRANSACTION">
+              <PropertyRef Name="COMPANY_PAYMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_SUBSCRIPTION_COMPANY">
+          <End Role="COMPANY" Type="Self.COMPANY" Multiplicity="1" />
+          <End Role="COMPANY_SUBSCRIPTION" Type="Self.COMPANY_SUBSCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY">
+              <PropertyRef Name="COMPANY_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_SUBSCRIPTION">
+              <PropertyRef Name="COMPANY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_SUBSCRIPTION_SUBSCRIPTION">
+          <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="1" />
+          <End Role="COMPANY_SUBSCRIPTION" Type="Self.COMPANY_SUBSCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBSCRIPTION">
+              <PropertyRef Name="SUBSCRIPTION_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_SUBSCRIPTION">
+              <PropertyRef Name="SUBSCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LANGUAGE_RES_LANGUAGE">
+          <End Role="LANGUAGE" Type="Self.LANGUAGE" Multiplicity="1" />
+          <End Role="LANGUAGE_RES" Type="Self.LANGUAGE_RES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LANGUAGE">
+              <PropertyRef Name="LANGUAGE_CODE" />
+            </Principal>
+            <Dependent Role="LANGUAGE_RES">
+              <PropertyRef Name="LANGUAGE_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_LANGUAGE">
+          <End Role="LANGUAGE" Type="Self.LANGUAGE" Multiplicity="1" />
+          <End Role="MENU" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LANGUAGE">
+              <PropertyRef Name="LANGUAGE_CODE" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="LANGUAGE_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_MENU1">
+          <End Role="MENU" Type="Self.MENU" Multiplicity="0..1" />
+          <End Role="MENU1" Type="Self.MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="MENU_ID" />
+            </Principal>
+            <Dependent Role="MENU1">
+              <PropertyRef Name="PARENT_MENU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MODULE_CURRENCY">
+          <End Role="CURRENCY" Type="Self.CURRENCY" Multiplicity="0..1" />
+          <End Role="MODULE" Type="Self.MODULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CURRENCY">
+              <PropertyRef Name="CURRENCY_CODE" />
+            </Principal>
+            <Dependent Role="MODULE">
+              <PropertyRef Name="CURRENCY_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACKAGE_CALCULATION_PACKAGE1">
+          <End Role="PACKAGE" Type="Self.PACKAGE" Multiplicity="1" />
+          <End Role="PACKAGE_CALCULATION" Type="Self.PACKAGE_CALCULATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACKAGE">
+              <PropertyRef Name="PACKAGE_CODE" />
+            </Principal>
+            <Dependent Role="PACKAGE_CALCULATION">
+              <PropertyRef Name="PACKAGE_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUBSCRIPTION_MODULE_MODULE">
+          <End Role="MODULE" Type="Self.MODULE" Multiplicity="1" />
+          <End Role="SUBSCRIPTION_MODULE" Type="Self.SUBSCRIPTION_MODULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="SUBSCRIPTION_MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUBSCRIPTION_MODULE_SUBSCRIPTION">
+          <End Role="SUBSCRIPTION" Type="Self.SUBSCRIPTION" Multiplicity="1" />
+          <End Role="SUBSCRIPTION_MODULE" Type="Self.SUBSCRIPTION_MODULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBSCRIPTION">
+              <PropertyRef Name="SUBSCRIPTION_ID" />
+            </Principal>
+            <Dependent Role="SUBSCRIPTION_MODULE">
+              <PropertyRef Name="SUBSCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ACCOUNT_COMPANY">
+          <End Role="COMPANY" Type="Self.COMPANY" Multiplicity="1" />
+          <End Role="USER_ACCOUNT" Type="Self.USER_ACCOUNT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY">
+              <PropertyRef Name="COMPANY_ID" />
+            </Principal>
+            <Dependent Role="USER_ACCOUNT">
+              <PropertyRef Name="COMPANY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ACCOUNT_ROLE">
+          <End Role="ROLE" Type="Self.ROLE" Multiplicity="1" />
+          <End Role="USER_ACCOUNT" Type="Self.USER_ACCOUNT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="USER_ACCOUNT">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="fishermanager_webModelStoreContainer">
+          <EntitySet Name="COMPANY" EntityType="Self.COMPANY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANY_ACCOUNTING" EntityType="Self.COMPANY_ACCOUNTING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANY_PARAMETER" EntityType="Self.COMPANY_PARAMETER" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANY_PAYMENT" EntityType="Self.COMPANY_PAYMENT" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANY_PAYMENT_TRANSACTION" EntityType="Self.COMPANY_PAYMENT_TRANSACTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="COMPANY_SUBSCRIPTION" EntityType="Self.COMPANY_SUBSCRIPTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CURRENCY" EntityType="Self.CURRENCY" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LANGUAGE" EntityType="Self.LANGUAGE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LANGUAGE_RES" EntityType="Self.LANGUAGE_RES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MENU" EntityType="Self.MENU" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MESSAGE" EntityType="Self.MESSAGE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MESSAGE_SETTING" EntityType="Self.MESSAGE_SETTING" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MODULE" EntityType="Self.MODULE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACKAGE" EntityType="Self.PACKAGE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PACKAGE_CALCULATION" EntityType="Self.PACKAGE_CALCULATION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PARAMETER_TYPE" EntityType="Self.PARAMETER_TYPE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ROLE" EntityType="Self.ROLE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUBSCRIPTION" EntityType="Self.SUBSCRIPTION" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SUBSCRIPTION_MODULE" EntityType="Self.SUBSCRIPTION_MODULE" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="USER_ACCOUNT" EntityType="Self.USER_ACCOUNT" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_COMPANY_ACCOUNTING_COMPANY" Association="Self.FK_COMPANY_ACCOUNTING_COMPANY">
+            <End Role="COMPANY" EntitySet="COMPANY" />
+            <End Role="COMPANY_ACCOUNTING" EntitySet="COMPANY_ACCOUNTING" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_PARAMETER_COMPANY" Association="Self.FK_COMPANY_PARAMETER_COMPANY">
+            <End Role="COMPANY" EntitySet="COMPANY" />
+            <End Role="COMPANY_PARAMETER" EntitySet="COMPANY_PARAMETER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_PARAMETER_PARAMETER_TYPE" Association="Self.FK_COMPANY_PARAMETER_PARAMETER_TYPE">
+            <End Role="PARAMETER_TYPE" EntitySet="PARAMETER_TYPE" />
+            <End Role="COMPANY_PARAMETER" EntitySet="COMPANY_PARAMETER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_PAYMENT_COMPANY_ACCOUNTING" Association="Self.FK_COMPANY_PAYMENT_COMPANY_ACCOUNTING">
+            <End Role="COMPANY_ACCOUNTING" EntitySet="COMPANY_ACCOUNTING" />
+            <End Role="COMPANY_PAYMENT" EntitySet="COMPANY_PAYMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_PAYMENT_TRANSACTION_COMPANY_PAYMENT" Association="Self.FK_COMPANY_PAYMENT_TRANSACTION_COMPANY_PAYMENT">
+            <End Role="COMPANY_PAYMENT" EntitySet="COMPANY_PAYMENT" />
+            <End Role="COMPANY_PAYMENT_TRANSACTION" EntitySet="COMPANY_PAYMENT_TRANSACTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_SUBSCRIPTION_COMPANY" Association="Self.FK_COMPANY_SUBSCRIPTION_COMPANY">
+            <End Role="COMPANY" EntitySet="COMPANY" />
+            <End Role="COMPANY_SUBSCRIPTION" EntitySet="COMPANY_SUBSCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_SUBSCRIPTION_SUBSCRIPTION" Association="Self.FK_COMPANY_SUBSCRIPTION_SUBSCRIPTION">
+            <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
+            <End Role="COMPANY_SUBSCRIPTION" EntitySet="COMPANY_SUBSCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LANGUAGE_RES_LANGUAGE" Association="Self.FK_LANGUAGE_RES_LANGUAGE">
+            <End Role="LANGUAGE" EntitySet="LANGUAGE" />
+            <End Role="LANGUAGE_RES" EntitySet="LANGUAGE_RES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_LANGUAGE" Association="Self.FK_MENU_LANGUAGE">
+            <End Role="LANGUAGE" EntitySet="LANGUAGE" />
+            <End Role="MENU" EntitySet="MENU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_MENU1" Association="Self.FK_MENU_MENU1">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="MENU1" EntitySet="MENU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MODULE_CURRENCY" Association="Self.FK_MODULE_CURRENCY">
+            <End Role="CURRENCY" EntitySet="CURRENCY" />
+            <End Role="MODULE" EntitySet="MODULE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACKAGE_CALCULATION_PACKAGE1" Association="Self.FK_PACKAGE_CALCULATION_PACKAGE1">
+            <End Role="PACKAGE" EntitySet="PACKAGE" />
+            <End Role="PACKAGE_CALCULATION" EntitySet="PACKAGE_CALCULATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUBSCRIPTION_MODULE_MODULE" Association="Self.FK_SUBSCRIPTION_MODULE_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="SUBSCRIPTION_MODULE" EntitySet="SUBSCRIPTION_MODULE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUBSCRIPTION_MODULE_SUBSCRIPTION" Association="Self.FK_SUBSCRIPTION_MODULE_SUBSCRIPTION">
+            <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
+            <End Role="SUBSCRIPTION_MODULE" EntitySet="SUBSCRIPTION_MODULE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ACCOUNT_COMPANY" Association="Self.FK_USER_ACCOUNT_COMPANY">
+            <End Role="COMPANY" EntitySet="COMPANY" />
+            <End Role="USER_ACCOUNT" EntitySet="USER_ACCOUNT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ACCOUNT_ROLE" Association="Self.FK_USER_ACCOUNT_ROLE">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="USER_ACCOUNT" EntitySet="USER_ACCOUNT" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="fishermanager_webModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="fishermanager_webEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="COMPANY" EntityType="fishermanager_webModel.COMPANY" />
+          <EntitySet Name="COMPANY_ACCOUNTING" EntityType="fishermanager_webModel.COMPANY_ACCOUNTING" />
+          <EntitySet Name="COMPANY_PARAMETER" EntityType="fishermanager_webModel.COMPANY_PARAMETER" />
+          <EntitySet Name="COMPANY_PAYMENT" EntityType="fishermanager_webModel.COMPANY_PAYMENT" />
+          <EntitySet Name="COMPANY_PAYMENT_TRANSACTION" EntityType="fishermanager_webModel.COMPANY_PAYMENT_TRANSACTION" />
+          <EntitySet Name="COMPANY_SUBSCRIPTION" EntityType="fishermanager_webModel.COMPANY_SUBSCRIPTION" />
+          <EntitySet Name="CURRENCY" EntityType="fishermanager_webModel.CURRENCY" />
+          <EntitySet Name="LANGUAGE" EntityType="fishermanager_webModel.LANGUAGE" />
+          <EntitySet Name="LANGUAGE_RES" EntityType="fishermanager_webModel.LANGUAGE_RES" />
+          <EntitySet Name="MENU" EntityType="fishermanager_webModel.MENU" />
+          <EntitySet Name="MESSAGE" EntityType="fishermanager_webModel.MESSAGE" />
+          <EntitySet Name="MESSAGE_SETTING" EntityType="fishermanager_webModel.MESSAGE_SETTING" />
+          <EntitySet Name="MODULE" EntityType="fishermanager_webModel.MODULE" />
+          <EntitySet Name="PACKAGE" EntityType="fishermanager_webModel.PACKAGE" />
+          <EntitySet Name="PACKAGE_CALCULATION" EntityType="fishermanager_webModel.PACKAGE_CALCULATION" />
+          <EntitySet Name="PARAMETER_TYPE" EntityType="fishermanager_webModel.PARAMETER_TYPE" />
+          <EntitySet Name="ROLE" EntityType="fishermanager_webModel.ROLE" />
+          <EntitySet Name="SUBSCRIPTION" EntityType="fishermanager_webModel.SUBSCRIPTION" />
+          <EntitySet Name="SUBSCRIPTION_MODULE" EntityType="fishermanager_webModel.SUBSCRIPTION_MODULE" />
+          <EntitySet Name="sysdiagrams" EntityType="fishermanager_webModel.sysdiagrams" />
+          <EntitySet Name="USER_ACCOUNT" EntityType="fishermanager_webModel.USER_ACCOUNT" />
+          <AssociationSet Name="FK_COMPANY_ACCOUNTING_COMPANY" Association="fishermanager_webModel.FK_COMPANY_ACCOUNTING_COMPANY">
+            <End Role="COMPANY" EntitySet="COMPANY" />
+            <End Role="COMPANY_ACCOUNTING" EntitySet="COMPANY_ACCOUNTING" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_PARAMETER_COMPANY" Association="fishermanager_webModel.FK_COMPANY_PARAMETER_COMPANY">
+            <End Role="COMPANY" EntitySet="COMPANY" />
+            <End Role="COMPANY_PARAMETER" EntitySet="COMPANY_PARAMETER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_SUBSCRIPTION_COMPANY" Association="fishermanager_webModel.FK_COMPANY_SUBSCRIPTION_COMPANY">
+            <End Role="COMPANY" EntitySet="COMPANY" />
+            <End Role="COMPANY_SUBSCRIPTION" EntitySet="COMPANY_SUBSCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ACCOUNT_COMPANY" Association="fishermanager_webModel.FK_USER_ACCOUNT_COMPANY">
+            <End Role="COMPANY" EntitySet="COMPANY" />
+            <End Role="USER_ACCOUNT" EntitySet="USER_ACCOUNT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_PAYMENT_COMPANY_ACCOUNTING" Association="fishermanager_webModel.FK_COMPANY_PAYMENT_COMPANY_ACCOUNTING">
+            <End Role="COMPANY_ACCOUNTING" EntitySet="COMPANY_ACCOUNTING" />
+            <End Role="COMPANY_PAYMENT" EntitySet="COMPANY_PAYMENT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_PARAMETER_PARAMETER_TYPE" Association="fishermanager_webModel.FK_COMPANY_PARAMETER_PARAMETER_TYPE">
+            <End Role="PARAMETER_TYPE" EntitySet="PARAMETER_TYPE" />
+            <End Role="COMPANY_PARAMETER" EntitySet="COMPANY_PARAMETER" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_PAYMENT_TRANSACTION_COMPANY_PAYMENT" Association="fishermanager_webModel.FK_COMPANY_PAYMENT_TRANSACTION_COMPANY_PAYMENT">
+            <End Role="COMPANY_PAYMENT" EntitySet="COMPANY_PAYMENT" />
+            <End Role="COMPANY_PAYMENT_TRANSACTION" EntitySet="COMPANY_PAYMENT_TRANSACTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_COMPANY_SUBSCRIPTION_SUBSCRIPTION" Association="fishermanager_webModel.FK_COMPANY_SUBSCRIPTION_SUBSCRIPTION">
+            <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
+            <End Role="COMPANY_SUBSCRIPTION" EntitySet="COMPANY_SUBSCRIPTION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MODULE_CURRENCY" Association="fishermanager_webModel.FK_MODULE_CURRENCY">
+            <End Role="CURRENCY" EntitySet="CURRENCY" />
+            <End Role="MODULE" EntitySet="MODULE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LANGUAGE_RES_LANGUAGE" Association="fishermanager_webModel.FK_LANGUAGE_RES_LANGUAGE">
+            <End Role="LANGUAGE" EntitySet="LANGUAGE" />
+            <End Role="LANGUAGE_RES" EntitySet="LANGUAGE_RES" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_LANGUAGE" Association="fishermanager_webModel.FK_MENU_LANGUAGE">
+            <End Role="LANGUAGE" EntitySet="LANGUAGE" />
+            <End Role="MENU" EntitySet="MENU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MENU_MENU1" Association="fishermanager_webModel.FK_MENU_MENU1">
+            <End Role="MENU" EntitySet="MENU" />
+            <End Role="MENU1" EntitySet="MENU" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUBSCRIPTION_MODULE_MODULE" Association="fishermanager_webModel.FK_SUBSCRIPTION_MODULE_MODULE">
+            <End Role="MODULE" EntitySet="MODULE" />
+            <End Role="SUBSCRIPTION_MODULE" EntitySet="SUBSCRIPTION_MODULE" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PACKAGE_CALCULATION_PACKAGE1" Association="fishermanager_webModel.FK_PACKAGE_CALCULATION_PACKAGE1">
+            <End Role="PACKAGE" EntitySet="PACKAGE" />
+            <End Role="PACKAGE_CALCULATION" EntitySet="PACKAGE_CALCULATION" />
+          </AssociationSet>
+          <AssociationSet Name="FK_USER_ACCOUNT_ROLE" Association="fishermanager_webModel.FK_USER_ACCOUNT_ROLE">
+            <End Role="ROLE" EntitySet="ROLE" />
+            <End Role="USER_ACCOUNT" EntitySet="USER_ACCOUNT" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SUBSCRIPTION_MODULE_SUBSCRIPTION" Association="fishermanager_webModel.FK_SUBSCRIPTION_MODULE_SUBSCRIPTION">
+            <End Role="SUBSCRIPTION" EntitySet="SUBSCRIPTION" />
+            <End Role="SUBSCRIPTION_MODULE" EntitySet="SUBSCRIPTION_MODULE" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="COMPANY">
+          <Key>
+            <PropertyRef Name="COMPANY_ID" />
+          </Key>
+          <Property Name="COMPANY_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="IS_DELETE" Type="Boolean" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_DELETE" Type="DateTime" Precision="3" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IS_ROOT" Type="Boolean" />
+          <Property Name="COUNTRY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CITY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DISTRICT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TAX_NUMBER" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ADDRESS" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="TAX_OFFICE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PRODUCTION_CAPACITY" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="COMPANY_ACCOUNTING" Relationship="fishermanager_webModel.FK_COMPANY_ACCOUNTING_COMPANY" FromRole="COMPANY" ToRole="COMPANY_ACCOUNTING" />
+          <NavigationProperty Name="COMPANY_PARAMETER" Relationship="fishermanager_webModel.FK_COMPANY_PARAMETER_COMPANY" FromRole="COMPANY" ToRole="COMPANY_PARAMETER" />
+          <NavigationProperty Name="COMPANY_SUBSCRIPTION" Relationship="fishermanager_webModel.FK_COMPANY_SUBSCRIPTION_COMPANY" FromRole="COMPANY" ToRole="COMPANY_SUBSCRIPTION" />
+          <NavigationProperty Name="USER_ACCOUNT" Relationship="fishermanager_webModel.FK_USER_ACCOUNT_COMPANY" FromRole="COMPANY" ToRole="USER_ACCOUNT" />
+        </EntityType>
+        <EntityType Name="COMPANY_ACCOUNTING">
+          <Key>
+            <PropertyRef Name="COMPANY_ACCOUNTING_ID" />
+          </Key>
+          <Property Name="COMPANY_ACCOUNTING_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="IS_DELETE" Type="Boolean" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_DELETE" Type="DateTime" Precision="3" />
+          <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="COMPANY" Relationship="fishermanager_webModel.FK_COMPANY_ACCOUNTING_COMPANY" FromRole="COMPANY_ACCOUNTING" ToRole="COMPANY" />
+          <NavigationProperty Name="COMPANY_PAYMENT" Relationship="fishermanager_webModel.FK_COMPANY_PAYMENT_COMPANY_ACCOUNTING" FromRole="COMPANY_ACCOUNTING" ToRole="COMPANY_PAYMENT" />
+        </EntityType>
+        <EntityType Name="COMPANY_PARAMETER">
+          <Key>
+            <PropertyRef Name="COMPANY_PARAMETER_ID" />
+          </Key>
+          <Property Name="COMPANY_PARAMETER_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+          <Property Name="PARAMETER_TYPE_CODE" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PARAMETER_VALUE" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="COMPANY" Relationship="fishermanager_webModel.FK_COMPANY_PARAMETER_COMPANY" FromRole="COMPANY_PARAMETER" ToRole="COMPANY" />
+          <NavigationProperty Name="PARAMETER_TYPE" Relationship="fishermanager_webModel.FK_COMPANY_PARAMETER_PARAMETER_TYPE" FromRole="COMPANY_PARAMETER" ToRole="PARAMETER_TYPE" />
+        </EntityType>
+        <EntityType Name="COMPANY_PAYMENT">
+          <Key>
+            <PropertyRef Name="COMPANY_PAYMENT_ID" />
+          </Key>
+          <Property Name="COMPANY_PAYMENT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="IS_DELETE" Type="Boolean" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_DELETE" Type="DateTime" Precision="3" />
+          <Property Name="COMPANY_ACCOUNTING_ID" Type="Int32" Nullable="false" />
+          <Property Name="LAST_PAYMENT_DATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TOTAL_DEBT" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="PAID" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CURRENCY_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="IS_COMPLETE" Type="Boolean" Nullable="false" />
+          <Property Name="COMPANY_SUBSCRIPTION_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="COMPANY_ACCOUNTING" Relationship="fishermanager_webModel.FK_COMPANY_PAYMENT_COMPANY_ACCOUNTING" FromRole="COMPANY_PAYMENT" ToRole="COMPANY_ACCOUNTING" />
+          <NavigationProperty Name="COMPANY_PAYMENT_TRANSACTION" Relationship="fishermanager_webModel.FK_COMPANY_PAYMENT_TRANSACTION_COMPANY_PAYMENT" FromRole="COMPANY_PAYMENT" ToRole="COMPANY_PAYMENT_TRANSACTION" />
+        </EntityType>
+        <EntityType Name="COMPANY_PAYMENT_TRANSACTION">
+          <Key>
+            <PropertyRef Name="COMPANY_PAYMENT_TRANSACTION_ID" />
+          </Key>
+          <Property Name="COMPANY_PAYMENT_TRANSACTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="IS_DELETE" Type="Boolean" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_DELETE" Type="DateTime" Precision="3" />
+          <Property Name="COMPANY_PAYMENT_ID" Type="Int32" Nullable="false" />
+          <Property Name="PAID" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CURRENCY_TYPE" Type="Int32" Nullable="false" />
+          <Property Name="CURRENCY_VALUE" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="CURRENCY_PAID" Type="Decimal" Nullable="false" Precision="18" Scale="0" />
+          <Property Name="BILL_NUMBER" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="RESPONSIBLE_USER_ID" Type="Int32" Nullable="false" />
+          <Property Name="PAYMENT_TYPE_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="COMPANY_PAYMENT" Relationship="fishermanager_webModel.FK_COMPANY_PAYMENT_TRANSACTION_COMPANY_PAYMENT" FromRole="COMPANY_PAYMENT_TRANSACTION" ToRole="COMPANY_PAYMENT" />
+        </EntityType>
+        <EntityType Name="COMPANY_SUBSCRIPTION">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+          <Property Name="SUBSCRIPTION_ID" Type="Int32" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="IS_DELETE" Type="Boolean" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_DELETE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_START" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_END" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="COMPANY" Relationship="fishermanager_webModel.FK_COMPANY_SUBSCRIPTION_COMPANY" FromRole="COMPANY_SUBSCRIPTION" ToRole="COMPANY" />
+          <NavigationProperty Name="SUBSCRIPTION" Relationship="fishermanager_webModel.FK_COMPANY_SUBSCRIPTION_SUBSCRIPTION" FromRole="COMPANY_SUBSCRIPTION" ToRole="SUBSCRIPTION" />
+        </EntityType>
+        <EntityType Name="CURRENCY">
+          <Key>
+            <PropertyRef Name="CURRENCY_CODE" />
+          </Key>
+          <Property Name="CURRENCY_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SYSTEM_NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="MODULE" Relationship="fishermanager_webModel.FK_MODULE_CURRENCY" FromRole="CURRENCY" ToRole="MODULE" />
+        </EntityType>
+        <EntityType Name="LANGUAGE">
+          <Key>
+            <PropertyRef Name="LANGUAGE_CODE" />
+          </Key>
+          <Property Name="LANGUAGE_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DEFAULT_CURRENCY_CODE" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LANGUAGE_RES" Relationship="fishermanager_webModel.FK_LANGUAGE_RES_LANGUAGE" FromRole="LANGUAGE" ToRole="LANGUAGE_RES" />
+          <NavigationProperty Name="MENU" Relationship="fishermanager_webModel.FK_MENU_LANGUAGE" FromRole="LANGUAGE" ToRole="MENU" />
+        </EntityType>
+        <EntityType Name="LANGUAGE_RES">
+          <Key>
+            <PropertyRef Name="RESOURCE_ID" />
+          </Key>
+          <Property Name="RESOURCE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RESOURCE_KEY" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="RESOURCE_VALUE" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LANGUAGE_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="LANGUAGE" Relationship="fishermanager_webModel.FK_LANGUAGE_RES_LANGUAGE" FromRole="LANGUAGE_RES" ToRole="LANGUAGE" />
+        </EntityType>
+        <EntityType Name="MENU">
+          <Key>
+            <PropertyRef Name="MENU_ID" />
+          </Key>
+          <Property Name="MENU_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PARENT_MENU_ID" Type="Int32" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LANGUAGE_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SEO_URL" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="SYSTEM_CODE" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CONTROLLER_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ACTION_NAME" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SHOW_ON_HEADER_MENU" Type="Boolean" Nullable="false" />
+          <Property Name="SHOW_ON_FOOTER_MENU" Type="Boolean" Nullable="false" />
+          <Property Name="DISPLAY_ORDER" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="LANGUAGE" Relationship="fishermanager_webModel.FK_MENU_LANGUAGE" FromRole="MENU" ToRole="LANGUAGE" />
+          <NavigationProperty Name="MENU1" Relationship="fishermanager_webModel.FK_MENU_MENU1" FromRole="MENU" ToRole="MENU1" />
+          <NavigationProperty Name="MENU2" Relationship="fishermanager_webModel.FK_MENU_MENU1" FromRole="MENU1" ToRole="MENU" />
+        </EntityType>
+        <EntityType Name="MESSAGE">
+          <Key>
+            <PropertyRef Name="MESSAGE_ID" />
+          </Key>
+          <Property Name="MESSAGE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUBJECT" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FARM_TYPE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FARM_CAPACITY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NUMBER_OF_EMPLOYEE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COUNTRY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CITY" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="COMPANY_NAME" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="E_MAIL" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PHONE_NUMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="APPOINTMENT_TIME" Type="DateTime" Precision="3" />
+          <Property Name="CREATED_TIME" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="MESSAGE_SETTING">
+          <Key>
+            <PropertyRef Name="MESSAGE_SETTING_KEY" />
+          </Key>
+          <Property Name="MESSAGE_SETTING_KEY" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="MESSAGE_SETTING_VALUE" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="HOST" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PORT" Type="Int32" />
+          <Property Name="PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ENABLE_SSL" Type="Boolean" />
+          <Property Name="DETAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="MODULE">
+          <Key>
+            <PropertyRef Name="MODULE_ID" />
+          </Key>
+          <Property Name="MODULE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SYSTEM_CODE_NAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SYSTEM_CODE_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PRICE_ADDITIONAL" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="IS_DELETE" Type="Boolean" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_DELETE" Type="DateTime" Precision="3" />
+          <Property Name="CURRENCY_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CURRENCY" Relationship="fishermanager_webModel.FK_MODULE_CURRENCY" FromRole="MODULE" ToRole="CURRENCY" />
+          <NavigationProperty Name="SUBSCRIPTION_MODULE" Relationship="fishermanager_webModel.FK_SUBSCRIPTION_MODULE_MODULE" FromRole="MODULE" ToRole="SUBSCRIPTION_MODULE" />
+        </EntityType>
+        <EntityType Name="PACKAGE">
+          <Key>
+            <PropertyRef Name="PACKAGE_CODE" />
+          </Key>
+          <Property Name="PACKAGE_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ACTIVE" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="PACKAGE_CALCULATION" Relationship="fishermanager_webModel.FK_PACKAGE_CALCULATION_PACKAGE1" FromRole="PACKAGE" ToRole="PACKAGE_CALCULATION" />
+        </EntityType>
+        <EntityType Name="PACKAGE_CALCULATION">
+          <Key>
+            <PropertyRef Name="PACKAGE_CALCULATION_ID" />
+          </Key>
+          <Property Name="PACKAGE_CALCULATION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PACKAGE_CODE" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PRICE_PER_MONTH" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="CURRENCY_CODE" Type="Int32" />
+          <Property Name="ADDITIONAL_PRICE_PER_POOL" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ADDITIONAL_PRICE_PER_CAPACITY" Type="Decimal" Precision="18" Scale="2" />
+          <Property Name="ADDITIONAL_PRICE_PER_USER" Type="Decimal" Precision="18" Scale="2" />
+          <NavigationProperty Name="PACKAGE" Relationship="fishermanager_webModel.FK_PACKAGE_CALCULATION_PACKAGE1" FromRole="PACKAGE_CALCULATION" ToRole="PACKAGE" />
+        </EntityType>
+        <EntityType Name="PARAMETER_TYPE">
+          <Key>
+            <PropertyRef Name="PARAMETER_TYPE_CODE" />
+          </Key>
+          <Property Name="PARAMETER_TYPE_CODE" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SYSTEM_CODE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DESCRIPTION_CODE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NAME" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="INPUT_TYPE" Type="String" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="COMPANY_PARAMETER" Relationship="fishermanager_webModel.FK_COMPANY_PARAMETER_PARAMETER_TYPE" FromRole="PARAMETER_TYPE" ToRole="COMPANY_PARAMETER" />
+        </EntityType>
+        <EntityType Name="ROLE">
+          <Key>
+            <PropertyRef Name="ROLE_ID" />
+          </Key>
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="IS_DELETE" Type="Boolean" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_DELETE" Type="DateTime" Precision="3" />
+          <Property Name="SYSTEM_CODE_TITLE" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="SYSTEM_CODE_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="USER_ACCOUNT" Relationship="fishermanager_webModel.FK_USER_ACCOUNT_ROLE" FromRole="ROLE" ToRole="USER_ACCOUNT" />
+        </EntityType>
+        <EntityType Name="SUBSCRIPTION">
+          <Key>
+            <PropertyRef Name="SUBSCRIPTION_ID" />
+          </Key>
+          <Property Name="SUBSCRIPTION_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SYSTEM_CODE_NAME" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PERIOD" Type="Int32" Nullable="false" />
+          <Property Name="PRICE" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="IS_DELETE" Type="Boolean" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_UPDATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_DELETE" Type="DateTime" Precision="3" />
+          <Property Name="CURRENCY_CODE" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SYSTEM_CODE_DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="COMPANY_SUBSCRIPTION" Relationship="fishermanager_webModel.FK_COMPANY_SUBSCRIPTION_SUBSCRIPTION" FromRole="SUBSCRIPTION" ToRole="COMPANY_SUBSCRIPTION" />
+          <NavigationProperty Name="SUBSCRIPTION_MODULE" Relationship="fishermanager_webModel.FK_SUBSCRIPTION_MODULE_SUBSCRIPTION" FromRole="SUBSCRIPTION" ToRole="SUBSCRIPTION_MODULE" />
+        </EntityType>
+        <EntityType Name="SUBSCRIPTION_MODULE">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SUBSCRIPTION_ID" Type="Int32" Nullable="false" />
+          <Property Name="MODULE_ID" Type="Int32" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="Boolean" Nullable="false" />
+          <Property Name="IS_DELETE" Type="Boolean" Nullable="false" />
+          <Property Name="DATE_CREATE" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DATE_DELETE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_UPDATE" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="MODULE" Relationship="fishermanager_webModel.FK_SUBSCRIPTION_MODULE_MODULE" FromRole="SUBSCRIPTION_MODULE" ToRole="MODULE" />
+          <NavigationProperty Name="SUBSCRIPTION" Relationship="fishermanager_webModel.FK_SUBSCRIPTION_MODULE_SUBSCRIPTION" FromRole="SUBSCRIPTION_MODULE" ToRole="SUBSCRIPTION" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="USER_ACCOUNT">
+          <Key>
+            <PropertyRef Name="USER_ACCOUNT_ID" />
+          </Key>
+          <Property Name="USER_ACCOUNT_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIRST_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LAST_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="FULL_NAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="COMPANY_ID" Type="Int32" Nullable="false" />
+          <Property Name="IS_ACTIVE" Type="Boolean" />
+          <Property Name="IS_DELETE" Type="Boolean" />
+          <Property Name="DATE_CREATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_UPDATE" Type="DateTime" Precision="3" />
+          <Property Name="DATE_DELETE" Type="DateTime" Precision="3" />
+          <Property Name="PASSWORD" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="USERNAME" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="E_MAIL" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DATE_LAST_LOGIN" Type="DateTime" Precision="3" />
+          <Property Name="ACTIVATION_CODE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DATE_PASSWORD_RESET_REQUEST" Type="DateTime" Precision="3" />
+          <Property Name="PASSWORD_RESET_IS_USED" Type="Boolean" />
+          <Property Name="PASSWORD_RESET_CODE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ROLE_ID" Type="Int32" Nullable="false" />
+          <Property Name="DESCRIPTION" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="COMPANY" Relationship="fishermanager_webModel.FK_USER_ACCOUNT_COMPANY" FromRole="USER_ACCOUNT" ToRole="COMPANY" />
+          <NavigationProperty Name="ROLE" Relationship="fishermanager_webModel.FK_USER_ACCOUNT_ROLE" FromRole="USER_ACCOUNT" ToRole="ROLE" />
+        </EntityType>
+        <Association Name="FK_COMPANY_ACCOUNTING_COMPANY">
+          <End Type="fishermanager_webModel.COMPANY" Role="COMPANY" Multiplicity="1" />
+          <End Type="fishermanager_webModel.COMPANY_ACCOUNTING" Role="COMPANY_ACCOUNTING" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY">
+              <PropertyRef Name="COMPANY_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_ACCOUNTING">
+              <PropertyRef Name="COMPANY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_PARAMETER_COMPANY">
+          <End Type="fishermanager_webModel.COMPANY" Role="COMPANY" Multiplicity="1" />
+          <End Type="fishermanager_webModel.COMPANY_PARAMETER" Role="COMPANY_PARAMETER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY">
+              <PropertyRef Name="COMPANY_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_PARAMETER">
+              <PropertyRef Name="COMPANY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_SUBSCRIPTION_COMPANY">
+          <End Type="fishermanager_webModel.COMPANY" Role="COMPANY" Multiplicity="1" />
+          <End Type="fishermanager_webModel.COMPANY_SUBSCRIPTION" Role="COMPANY_SUBSCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY">
+              <PropertyRef Name="COMPANY_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_SUBSCRIPTION">
+              <PropertyRef Name="COMPANY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ACCOUNT_COMPANY">
+          <End Type="fishermanager_webModel.COMPANY" Role="COMPANY" Multiplicity="1" />
+          <End Type="fishermanager_webModel.USER_ACCOUNT" Role="USER_ACCOUNT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY">
+              <PropertyRef Name="COMPANY_ID" />
+            </Principal>
+            <Dependent Role="USER_ACCOUNT">
+              <PropertyRef Name="COMPANY_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_PAYMENT_COMPANY_ACCOUNTING">
+          <End Type="fishermanager_webModel.COMPANY_ACCOUNTING" Role="COMPANY_ACCOUNTING" Multiplicity="1" />
+          <End Type="fishermanager_webModel.COMPANY_PAYMENT" Role="COMPANY_PAYMENT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY_ACCOUNTING">
+              <PropertyRef Name="COMPANY_ACCOUNTING_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_PAYMENT">
+              <PropertyRef Name="COMPANY_ACCOUNTING_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_PARAMETER_PARAMETER_TYPE">
+          <End Type="fishermanager_webModel.PARAMETER_TYPE" Role="PARAMETER_TYPE" Multiplicity="1" />
+          <End Type="fishermanager_webModel.COMPANY_PARAMETER" Role="COMPANY_PARAMETER" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PARAMETER_TYPE">
+              <PropertyRef Name="PARAMETER_TYPE_CODE" />
+            </Principal>
+            <Dependent Role="COMPANY_PARAMETER">
+              <PropertyRef Name="PARAMETER_TYPE_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_PAYMENT_TRANSACTION_COMPANY_PAYMENT">
+          <End Type="fishermanager_webModel.COMPANY_PAYMENT" Role="COMPANY_PAYMENT" Multiplicity="1" />
+          <End Type="fishermanager_webModel.COMPANY_PAYMENT_TRANSACTION" Role="COMPANY_PAYMENT_TRANSACTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="COMPANY_PAYMENT">
+              <PropertyRef Name="COMPANY_PAYMENT_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_PAYMENT_TRANSACTION">
+              <PropertyRef Name="COMPANY_PAYMENT_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_COMPANY_SUBSCRIPTION_SUBSCRIPTION">
+          <End Type="fishermanager_webModel.SUBSCRIPTION" Role="SUBSCRIPTION" Multiplicity="1" />
+          <End Type="fishermanager_webModel.COMPANY_SUBSCRIPTION" Role="COMPANY_SUBSCRIPTION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBSCRIPTION">
+              <PropertyRef Name="SUBSCRIPTION_ID" />
+            </Principal>
+            <Dependent Role="COMPANY_SUBSCRIPTION">
+              <PropertyRef Name="SUBSCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MODULE_CURRENCY">
+          <End Type="fishermanager_webModel.CURRENCY" Role="CURRENCY" Multiplicity="0..1" />
+          <End Type="fishermanager_webModel.MODULE" Role="MODULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CURRENCY">
+              <PropertyRef Name="CURRENCY_CODE" />
+            </Principal>
+            <Dependent Role="MODULE">
+              <PropertyRef Name="CURRENCY_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LANGUAGE_RES_LANGUAGE">
+          <End Type="fishermanager_webModel.LANGUAGE" Role="LANGUAGE" Multiplicity="1" />
+          <End Type="fishermanager_webModel.LANGUAGE_RES" Role="LANGUAGE_RES" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LANGUAGE">
+              <PropertyRef Name="LANGUAGE_CODE" />
+            </Principal>
+            <Dependent Role="LANGUAGE_RES">
+              <PropertyRef Name="LANGUAGE_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_LANGUAGE">
+          <End Type="fishermanager_webModel.LANGUAGE" Role="LANGUAGE" Multiplicity="1" />
+          <End Type="fishermanager_webModel.MENU" Role="MENU" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LANGUAGE">
+              <PropertyRef Name="LANGUAGE_CODE" />
+            </Principal>
+            <Dependent Role="MENU">
+              <PropertyRef Name="LANGUAGE_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MENU_MENU1">
+          <End Type="fishermanager_webModel.MENU" Role="MENU" Multiplicity="0..1" />
+          <End Type="fishermanager_webModel.MENU" Role="MENU1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MENU">
+              <PropertyRef Name="MENU_ID" />
+            </Principal>
+            <Dependent Role="MENU1">
+              <PropertyRef Name="PARENT_MENU_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUBSCRIPTION_MODULE_MODULE">
+          <End Type="fishermanager_webModel.MODULE" Role="MODULE" Multiplicity="1" />
+          <End Type="fishermanager_webModel.SUBSCRIPTION_MODULE" Role="SUBSCRIPTION_MODULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Principal>
+            <Dependent Role="SUBSCRIPTION_MODULE">
+              <PropertyRef Name="MODULE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PACKAGE_CALCULATION_PACKAGE1">
+          <End Type="fishermanager_webModel.PACKAGE" Role="PACKAGE" Multiplicity="1" />
+          <End Type="fishermanager_webModel.PACKAGE_CALCULATION" Role="PACKAGE_CALCULATION" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PACKAGE">
+              <PropertyRef Name="PACKAGE_CODE" />
+            </Principal>
+            <Dependent Role="PACKAGE_CALCULATION">
+              <PropertyRef Name="PACKAGE_CODE" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_USER_ACCOUNT_ROLE">
+          <End Type="fishermanager_webModel.ROLE" Role="ROLE" Multiplicity="1" />
+          <End Type="fishermanager_webModel.USER_ACCOUNT" Role="USER_ACCOUNT" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ROLE">
+              <PropertyRef Name="ROLE_ID" />
+            </Principal>
+            <Dependent Role="USER_ACCOUNT">
+              <PropertyRef Name="ROLE_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SUBSCRIPTION_MODULE_SUBSCRIPTION">
+          <End Type="fishermanager_webModel.SUBSCRIPTION" Role="SUBSCRIPTION" Multiplicity="1" />
+          <End Type="fishermanager_webModel.SUBSCRIPTION_MODULE" Role="SUBSCRIPTION_MODULE" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SUBSCRIPTION">
+              <PropertyRef Name="SUBSCRIPTION_ID" />
+            </Principal>
+            <Dependent Role="SUBSCRIPTION_MODULE">
+              <PropertyRef Name="SUBSCRIPTION_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="fishermanager_webModelStoreContainer" CdmEntityContainer="fishermanager_webEntities">
+          <EntitySetMapping Name="COMPANY">
+            <EntityTypeMapping TypeName="fishermanager_webModel.COMPANY">
+              <MappingFragment StoreEntitySet="COMPANY">
+                <ScalarProperty Name="PRODUCTION_CAPACITY" ColumnName="PRODUCTION_CAPACITY" />
+                <ScalarProperty Name="TAX_OFFICE" ColumnName="TAX_OFFICE" />
+                <ScalarProperty Name="ADDRESS" ColumnName="ADDRESS" />
+                <ScalarProperty Name="TAX_NUMBER" ColumnName="TAX_NUMBER" />
+                <ScalarProperty Name="DISTRICT" ColumnName="DISTRICT" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="IS_ROOT" ColumnName="IS_ROOT" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DATE_DELETE" ColumnName="DATE_DELETE" />
+                <ScalarProperty Name="DATE_UPDATE" ColumnName="DATE_UPDATE" />
+                <ScalarProperty Name="DATE_CREATE" ColumnName="DATE_CREATE" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANY_ACCOUNTING">
+            <EntityTypeMapping TypeName="fishermanager_webModel.COMPANY_ACCOUNTING">
+              <MappingFragment StoreEntitySet="COMPANY_ACCOUNTING">
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="DATE_DELETE" ColumnName="DATE_DELETE" />
+                <ScalarProperty Name="DATE_UPDATE" ColumnName="DATE_UPDATE" />
+                <ScalarProperty Name="DATE_CREATE" ColumnName="DATE_CREATE" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="COMPANY_ACCOUNTING_ID" ColumnName="COMPANY_ACCOUNTING_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANY_PARAMETER">
+            <EntityTypeMapping TypeName="fishermanager_webModel.COMPANY_PARAMETER">
+              <MappingFragment StoreEntitySet="COMPANY_PARAMETER">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="PARAMETER_VALUE" ColumnName="PARAMETER_VALUE" />
+                <ScalarProperty Name="PARAMETER_TYPE_CODE" ColumnName="PARAMETER_TYPE_CODE" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="COMPANY_PARAMETER_ID" ColumnName="COMPANY_PARAMETER_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANY_PAYMENT">
+            <EntityTypeMapping TypeName="fishermanager_webModel.COMPANY_PAYMENT">
+              <MappingFragment StoreEntitySet="COMPANY_PAYMENT">
+                <ScalarProperty Name="COMPANY_SUBSCRIPTION_ID" ColumnName="COMPANY_SUBSCRIPTION_ID" />
+                <ScalarProperty Name="IS_COMPLETE" ColumnName="IS_COMPLETE" />
+                <ScalarProperty Name="CURRENCY_TYPE" ColumnName="CURRENCY_TYPE" />
+                <ScalarProperty Name="PAID" ColumnName="PAID" />
+                <ScalarProperty Name="TOTAL_DEBT" ColumnName="TOTAL_DEBT" />
+                <ScalarProperty Name="LAST_PAYMENT_DATE" ColumnName="LAST_PAYMENT_DATE" />
+                <ScalarProperty Name="COMPANY_ACCOUNTING_ID" ColumnName="COMPANY_ACCOUNTING_ID" />
+                <ScalarProperty Name="DATE_DELETE" ColumnName="DATE_DELETE" />
+                <ScalarProperty Name="DATE_UPDATE" ColumnName="DATE_UPDATE" />
+                <ScalarProperty Name="DATE_CREATE" ColumnName="DATE_CREATE" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="COMPANY_PAYMENT_ID" ColumnName="COMPANY_PAYMENT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANY_PAYMENT_TRANSACTION">
+            <EntityTypeMapping TypeName="fishermanager_webModel.COMPANY_PAYMENT_TRANSACTION">
+              <MappingFragment StoreEntitySet="COMPANY_PAYMENT_TRANSACTION">
+                <ScalarProperty Name="PAYMENT_TYPE_CODE" ColumnName="PAYMENT_TYPE_CODE" />
+                <ScalarProperty Name="RESPONSIBLE_USER_ID" ColumnName="RESPONSIBLE_USER_ID" />
+                <ScalarProperty Name="BILL_NUMBER" ColumnName="BILL_NUMBER" />
+                <ScalarProperty Name="CURRENCY_PAID" ColumnName="CURRENCY_PAID" />
+                <ScalarProperty Name="CURRENCY_VALUE" ColumnName="CURRENCY_VALUE" />
+                <ScalarProperty Name="CURRENCY_TYPE" ColumnName="CURRENCY_TYPE" />
+                <ScalarProperty Name="PAID" ColumnName="PAID" />
+                <ScalarProperty Name="COMPANY_PAYMENT_ID" ColumnName="COMPANY_PAYMENT_ID" />
+                <ScalarProperty Name="DATE_DELETE" ColumnName="DATE_DELETE" />
+                <ScalarProperty Name="DATE_UPDATE" ColumnName="DATE_UPDATE" />
+                <ScalarProperty Name="DATE_CREATE" ColumnName="DATE_CREATE" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="COMPANY_PAYMENT_TRANSACTION_ID" ColumnName="COMPANY_PAYMENT_TRANSACTION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="COMPANY_SUBSCRIPTION">
+            <EntityTypeMapping TypeName="fishermanager_webModel.COMPANY_SUBSCRIPTION">
+              <MappingFragment StoreEntitySet="COMPANY_SUBSCRIPTION">
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="DATE_END" ColumnName="DATE_END" />
+                <ScalarProperty Name="DATE_START" ColumnName="DATE_START" />
+                <ScalarProperty Name="DATE_DELETE" ColumnName="DATE_DELETE" />
+                <ScalarProperty Name="DATE_UPDATE" ColumnName="DATE_UPDATE" />
+                <ScalarProperty Name="DATE_CREATE" ColumnName="DATE_CREATE" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="SUBSCRIPTION_ID" ColumnName="SUBSCRIPTION_ID" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CURRENCY">
+            <EntityTypeMapping TypeName="fishermanager_webModel.CURRENCY">
+              <MappingFragment StoreEntitySet="CURRENCY">
+                <ScalarProperty Name="SYSTEM_NAME" ColumnName="SYSTEM_NAME" />
+                <ScalarProperty Name="CURRENCY_CODE" ColumnName="CURRENCY_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LANGUAGE">
+            <EntityTypeMapping TypeName="fishermanager_webModel.LANGUAGE">
+              <MappingFragment StoreEntitySet="LANGUAGE">
+                <ScalarProperty Name="DEFAULT_CURRENCY_CODE" ColumnName="DEFAULT_CURRENCY_CODE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="LANGUAGE_CODE" ColumnName="LANGUAGE_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LANGUAGE_RES">
+            <EntityTypeMapping TypeName="fishermanager_webModel.LANGUAGE_RES">
+              <MappingFragment StoreEntitySet="LANGUAGE_RES">
+                <ScalarProperty Name="LANGUAGE_CODE" ColumnName="LANGUAGE_CODE" />
+                <ScalarProperty Name="RESOURCE_VALUE" ColumnName="RESOURCE_VALUE" />
+                <ScalarProperty Name="RESOURCE_KEY" ColumnName="RESOURCE_KEY" />
+                <ScalarProperty Name="RESOURCE_ID" ColumnName="RESOURCE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MENU">
+            <EntityTypeMapping TypeName="fishermanager_webModel.MENU">
+              <MappingFragment StoreEntitySet="MENU">
+                <ScalarProperty Name="DISPLAY_ORDER" ColumnName="DISPLAY_ORDER" />
+                <ScalarProperty Name="SHOW_ON_FOOTER_MENU" ColumnName="SHOW_ON_FOOTER_MENU" />
+                <ScalarProperty Name="SHOW_ON_HEADER_MENU" ColumnName="SHOW_ON_HEADER_MENU" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ACTION_NAME" ColumnName="ACTION_NAME" />
+                <ScalarProperty Name="CONTROLLER_NAME" ColumnName="CONTROLLER_NAME" />
+                <ScalarProperty Name="SYSTEM_CODE" ColumnName="SYSTEM_CODE" />
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="SEO_URL" ColumnName="SEO_URL" />
+                <ScalarProperty Name="LANGUAGE_CODE" ColumnName="LANGUAGE_CODE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PARENT_MENU_ID" ColumnName="PARENT_MENU_ID" />
+                <ScalarProperty Name="MENU_ID" ColumnName="MENU_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MESSAGE">
+            <EntityTypeMapping TypeName="fishermanager_webModel.MESSAGE">
+              <MappingFragment StoreEntitySet="MESSAGE">
+                <ScalarProperty Name="CREATED_TIME" ColumnName="CREATED_TIME" />
+                <ScalarProperty Name="APPOINTMENT_TIME" ColumnName="APPOINTMENT_TIME" />
+                <ScalarProperty Name="PHONE_NUMBER" ColumnName="PHONE_NUMBER" />
+                <ScalarProperty Name="E_MAIL" ColumnName="E_MAIL" />
+                <ScalarProperty Name="COMPANY_NAME" ColumnName="COMPANY_NAME" />
+                <ScalarProperty Name="CITY" ColumnName="CITY" />
+                <ScalarProperty Name="COUNTRY" ColumnName="COUNTRY" />
+                <ScalarProperty Name="NUMBER_OF_EMPLOYEE" ColumnName="NUMBER_OF_EMPLOYEE" />
+                <ScalarProperty Name="FARM_CAPACITY" ColumnName="FARM_CAPACITY" />
+                <ScalarProperty Name="FARM_TYPE" ColumnName="FARM_TYPE" />
+                <ScalarProperty Name="SUBJECT" ColumnName="SUBJECT" />
+                <ScalarProperty Name="MESSAGE_ID" ColumnName="MESSAGE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MESSAGE_SETTING">
+            <EntityTypeMapping TypeName="fishermanager_webModel.MESSAGE_SETTING">
+              <MappingFragment StoreEntitySet="MESSAGE_SETTING">
+                <ScalarProperty Name="DETAIL" ColumnName="DETAIL" />
+                <ScalarProperty Name="ENABLE_SSL" ColumnName="ENABLE_SSL" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="PORT" ColumnName="PORT" />
+                <ScalarProperty Name="HOST" ColumnName="HOST" />
+                <ScalarProperty Name="MESSAGE_SETTING_VALUE" ColumnName="MESSAGE_SETTING_VALUE" />
+                <ScalarProperty Name="MESSAGE_SETTING_KEY" ColumnName="MESSAGE_SETTING_KEY" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MODULE">
+            <EntityTypeMapping TypeName="fishermanager_webModel.MODULE">
+              <MappingFragment StoreEntitySet="MODULE">
+                <ScalarProperty Name="CURRENCY_CODE" ColumnName="CURRENCY_CODE" />
+                <ScalarProperty Name="DATE_DELETE" ColumnName="DATE_DELETE" />
+                <ScalarProperty Name="DATE_UPDATE" ColumnName="DATE_UPDATE" />
+                <ScalarProperty Name="DATE_CREATE" ColumnName="DATE_CREATE" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="PRICE_ADDITIONAL" ColumnName="PRICE_ADDITIONAL" />
+                <ScalarProperty Name="SYSTEM_CODE_DESCRIPTION" ColumnName="SYSTEM_CODE_DESCRIPTION" />
+                <ScalarProperty Name="SYSTEM_CODE_NAME" ColumnName="SYSTEM_CODE_NAME" />
+                <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACKAGE">
+            <EntityTypeMapping TypeName="fishermanager_webModel.PACKAGE">
+              <MappingFragment StoreEntitySet="PACKAGE">
+                <ScalarProperty Name="ACTIVE" ColumnName="ACTIVE" />
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="PACKAGE_CODE" ColumnName="PACKAGE_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PACKAGE_CALCULATION">
+            <EntityTypeMapping TypeName="fishermanager_webModel.PACKAGE_CALCULATION">
+              <MappingFragment StoreEntitySet="PACKAGE_CALCULATION">
+                <ScalarProperty Name="ADDITIONAL_PRICE_PER_USER" ColumnName="ADDITIONAL_PRICE_PER_USER" />
+                <ScalarProperty Name="ADDITIONAL_PRICE_PER_CAPACITY" ColumnName="ADDITIONAL_PRICE_PER_CAPACITY" />
+                <ScalarProperty Name="ADDITIONAL_PRICE_PER_POOL" ColumnName="ADDITIONAL_PRICE_PER_POOL" />
+                <ScalarProperty Name="CURRENCY_CODE" ColumnName="CURRENCY_CODE" />
+                <ScalarProperty Name="PRICE_PER_MONTH" ColumnName="PRICE_PER_MONTH" />
+                <ScalarProperty Name="PACKAGE_CODE" ColumnName="PACKAGE_CODE" />
+                <ScalarProperty Name="PACKAGE_CALCULATION_ID" ColumnName="PACKAGE_CALCULATION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PARAMETER_TYPE">
+            <EntityTypeMapping TypeName="fishermanager_webModel.PARAMETER_TYPE">
+              <MappingFragment StoreEntitySet="PARAMETER_TYPE">
+                <ScalarProperty Name="INPUT_TYPE" ColumnName="INPUT_TYPE" />
+                <ScalarProperty Name="NAME" ColumnName="NAME" />
+                <ScalarProperty Name="DESCRIPTION_CODE" ColumnName="DESCRIPTION_CODE" />
+                <ScalarProperty Name="SYSTEM_CODE" ColumnName="SYSTEM_CODE" />
+                <ScalarProperty Name="PARAMETER_TYPE_CODE" ColumnName="PARAMETER_TYPE_CODE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ROLE">
+            <EntityTypeMapping TypeName="fishermanager_webModel.ROLE">
+              <MappingFragment StoreEntitySet="ROLE">
+                <ScalarProperty Name="SYSTEM_CODE_DESCRIPTION" ColumnName="SYSTEM_CODE_DESCRIPTION" />
+                <ScalarProperty Name="SYSTEM_CODE_TITLE" ColumnName="SYSTEM_CODE_TITLE" />
+                <ScalarProperty Name="DATE_DELETE" ColumnName="DATE_DELETE" />
+                <ScalarProperty Name="DATE_UPDATE" ColumnName="DATE_UPDATE" />
+                <ScalarProperty Name="DATE_CREATE" ColumnName="DATE_CREATE" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBSCRIPTION">
+            <EntityTypeMapping TypeName="fishermanager_webModel.SUBSCRIPTION">
+              <MappingFragment StoreEntitySet="SUBSCRIPTION">
+                <ScalarProperty Name="SYSTEM_CODE_DESCRIPTION" ColumnName="SYSTEM_CODE_DESCRIPTION" />
+                <ScalarProperty Name="CURRENCY_CODE" ColumnName="CURRENCY_CODE" />
+                <ScalarProperty Name="DATE_DELETE" ColumnName="DATE_DELETE" />
+                <ScalarProperty Name="DATE_UPDATE" ColumnName="DATE_UPDATE" />
+                <ScalarProperty Name="DATE_CREATE" ColumnName="DATE_CREATE" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="PRICE" ColumnName="PRICE" />
+                <ScalarProperty Name="PERIOD" ColumnName="PERIOD" />
+                <ScalarProperty Name="SYSTEM_CODE_NAME" ColumnName="SYSTEM_CODE_NAME" />
+                <ScalarProperty Name="SUBSCRIPTION_ID" ColumnName="SUBSCRIPTION_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SUBSCRIPTION_MODULE">
+            <EntityTypeMapping TypeName="fishermanager_webModel.SUBSCRIPTION_MODULE">
+              <MappingFragment StoreEntitySet="SUBSCRIPTION_MODULE">
+                <ScalarProperty Name="DATE_UPDATE" ColumnName="DATE_UPDATE" />
+                <ScalarProperty Name="DATE_DELETE" ColumnName="DATE_DELETE" />
+                <ScalarProperty Name="DATE_CREATE" ColumnName="DATE_CREATE" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="MODULE_ID" ColumnName="MODULE_ID" />
+                <ScalarProperty Name="SUBSCRIPTION_ID" ColumnName="SUBSCRIPTION_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="fishermanager_webModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="USER_ACCOUNT">
+            <EntityTypeMapping TypeName="fishermanager_webModel.USER_ACCOUNT">
+              <MappingFragment StoreEntitySet="USER_ACCOUNT">
+                <ScalarProperty Name="DESCRIPTION" ColumnName="DESCRIPTION" />
+                <ScalarProperty Name="ROLE_ID" ColumnName="ROLE_ID" />
+                <ScalarProperty Name="PASSWORD_RESET_CODE" ColumnName="PASSWORD_RESET_CODE" />
+                <ScalarProperty Name="PASSWORD_RESET_IS_USED" ColumnName="PASSWORD_RESET_IS_USED" />
+                <ScalarProperty Name="DATE_PASSWORD_RESET_REQUEST" ColumnName="DATE_PASSWORD_RESET_REQUEST" />
+                <ScalarProperty Name="ACTIVATION_CODE" ColumnName="ACTIVATION_CODE" />
+                <ScalarProperty Name="DATE_LAST_LOGIN" ColumnName="DATE_LAST_LOGIN" />
+                <ScalarProperty Name="E_MAIL" ColumnName="E_MAIL" />
+                <ScalarProperty Name="USERNAME" ColumnName="USERNAME" />
+                <ScalarProperty Name="PASSWORD" ColumnName="PASSWORD" />
+                <ScalarProperty Name="DATE_DELETE" ColumnName="DATE_DELETE" />
+                <ScalarProperty Name="DATE_UPDATE" ColumnName="DATE_UPDATE" />
+                <ScalarProperty Name="DATE_CREATE" ColumnName="DATE_CREATE" />
+                <ScalarProperty Name="IS_DELETE" ColumnName="IS_DELETE" />
+                <ScalarProperty Name="IS_ACTIVE" ColumnName="IS_ACTIVE" />
+                <ScalarProperty Name="COMPANY_ID" ColumnName="COMPANY_ID" />
+                <ScalarProperty Name="FULL_NAME" ColumnName="FULL_NAME" />
+                <ScalarProperty Name="LAST_NAME" ColumnName="LAST_NAME" />
+                <ScalarProperty Name="FIRST_NAME" ColumnName="FIRST_NAME" />
+                <ScalarProperty Name="USER_ACCOUNT_ID" ColumnName="USER_ACCOUNT_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

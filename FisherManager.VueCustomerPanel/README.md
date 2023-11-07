@@ -1,0 +1,3 @@
+# FisherManager.VueCustomerPanel
+
+
